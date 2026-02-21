@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-cream: #F5EFE6;
+  --color-beige: #E8DCCB;
+  --color-mocha: #4A3428;
+  --color-espresso: #2B1E18;
+  --color-gold: #B89B5E;
+  --color-sage: #8E9C8C;
+  --color-text-primary: #2B1E18;
+  --color-text-secondary: #6E5A4D;
+
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+}
+
+@layer base {
+  body {
+    @apply bg-cream text-text-primary font-sans antialiased selection:bg-mocha/10;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20;
+  }
+  .soft-shadow {
+    box-shadow: 0 4px 20px -2px rgba(43, 30, 24, 0.05);
+  }
+  .soft-shadow-hover {
+    box-shadow: 0 10px 30px -5px rgba(43, 30, 24, 0.1);
+  }
+}
+
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cream;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-mocha/20 rounded-full hover:bg-mocha/40 transition-colors;
+}
