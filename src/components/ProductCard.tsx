@@ -23,68 +23,66 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, onAddToCart
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={onClick}
-        className="group cursor-pointer relative"
+        className="group cursor-pointer relative flex flex-col h-full"
       >
-        <div className="flex flex-col space-y-8">
-          <div className="relative aspect-[4/5] overflow-hidden bg-transparent flex items-center justify-center">
-            <AnimatePresence mode="wait">
-              {isHovered ? (
-                <motion.div
-                  key="details"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  className="absolute inset-0 bg-beige/40 backdrop-blur-sm rounded-3xl p-8 flex flex-col justify-center space-y-6 border border-mocha/10"
-                >
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center border-b border-mocha/10 pb-2">
-                      <span className="text-[10px] uppercase tracking-widest text-text-secondary">Coffee.</span>
-                      <span className="text-sm font-serif font-bold text-espresso">{product.name}</span>
-                    </div>
-                    <div className="flex justify-between items-center border-b border-mocha/10 pb-2">
-                      <span className="text-[10px] uppercase tracking-widest text-text-secondary">Origin.</span>
-                      <span className="text-sm font-serif font-bold text-espresso">{product.origin}</span>
-                    </div>
-                    <div className="flex justify-between items-center border-b border-mocha/10 pb-2">
-                      <span className="text-[10px] uppercase tracking-widest text-text-secondary">Bag size.</span>
-                      <span className="text-sm font-serif font-bold text-espresso">250g</span>
-                    </div>
+        <div className="relative aspect-[4/5] rounded-[24px] overflow-hidden bg-[#f4f3ee] flex items-center justify-center transition-colors duration-500 mb-8">
+          <AnimatePresence mode="wait">
+            {isHovered ? (
+              <motion.div
+                key="details"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="absolute inset-0 bg-[#f4f3ee] p-8 flex flex-col justify-center"
+              >
+                <div className="flex-1 flex flex-col justify-center max-w-[80%] mx-auto w-full">
+                  <div className="flex justify-between items-center border-b border-espresso/20 py-4">
+                    <span className="text-sm font-bold text-espresso">Coffee.</span>
+                    <span className="text-sm text-espresso text-right">{product.name}.</span>
                   </div>
-                  <button 
-                    onClick={(e) => { e.stopPropagation(); onAddToCart(e); }}
-                    className="w-full py-4 bg-espresso text-cream rounded-full text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-mocha transition-colors"
-                  >
-                    Buy Now
-                  </button>
-                  <button className="w-full text-[10px] font-bold uppercase tracking-[0.2em] text-espresso/40 hover:text-espresso transition-colors">
-                    Read More
-                  </button>
-                </motion.div>
-              ) : (
-                <motion.img
-                  key="image"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-contain"
-                  referrerPolicy="no-referrer"
-                />
-              )}
-            </AnimatePresence>
-          </div>
+                  <div className="flex justify-between items-center border-b border-espresso/20 py-4">
+                    <span className="text-sm font-bold text-espresso">Origin.</span>
+                    <span className="text-sm text-espresso text-right">{product.origin}</span>
+                  </div>
+                  <div className="flex justify-between items-center border-b border-espresso/20 py-4">
+                    <span className="text-sm font-bold text-espresso">Bag size.</span>
+                    <span className="text-sm text-espresso text-right">250g</span>
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.img
+                key="image"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                src={product.image}
+                alt={product.name}
+                className="w-full h-full object-cover mix-blend-multiply p-4"
+                referrerPolicy="no-referrer"
+              />
+            )}
+          </AnimatePresence>
+        </div>
 
-          <div className="space-y-6 text-center">
-            <div className="space-y-2">
-              <h3 className="text-2xl font-serif font-bold text-espresso tracking-tight group-hover:text-mocha transition-colors">
-                {product.name}.
-              </h3>
-              <p className="text-sm text-text-secondary leading-relaxed max-w-[280px] mx-auto">
-                {product.description.split('.')[0]}.
-              </p>
-              <p className="text-lg font-bold text-espresso pt-2">£{product.price.toFixed(2)}</p>
-            </div>
+        <div className="flex flex-col flex-1 text-center px-4">
+          <h3 className="text-xl font-serif font-bold text-espresso tracking-tight mb-4">
+            {product.name}.
+          </h3>
+          <p className="text-sm text-text-secondary leading-relaxed mb-6 flex-1">
+            {product.description}
+          </p>
+          <p className="text-base font-bold text-espresso mb-6">£{product.price.toFixed(2)}</p>
+          
+          <div className={`transition-all duration-300 overflow-hidden ${isHovered ? 'max-h-16 opacity-100' : 'max-h-0 opacity-0'}`}>
+            <button 
+              onClick={(e) => { e.stopPropagation(); onAddToCart(e); }}
+              className="w-full py-4 bg-espresso text-cream rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-mocha transition-colors"
+            >
+              Buy Now
+            </button>
           </div>
         </div>
       </motion.div>

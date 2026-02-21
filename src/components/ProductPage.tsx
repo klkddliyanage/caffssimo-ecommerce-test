@@ -46,15 +46,20 @@ export default function ProductPage({ product, onBack, onAddToCart }: ProductPag
             />
           </div>
           <div className="grid grid-cols-4 gap-6">
-            {[...Array(4)].map((_, i) => (
+            {[
+              product.image,
+              'https://images.unsplash.com/photo-1497933322477-911f93bb7867?auto=format&fit=crop&q=80&w=400',
+              'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=400',
+              'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&q=80&w=400'
+            ].map((imgSrc, i) => (
               <motion.div 
                 key={i}
                 whileHover={{ y: -4 }}
                 className="aspect-square rounded-2xl overflow-hidden bg-white/50 border border-mocha/5 cursor-pointer p-2"
               >
                 <img 
-                  src={`https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&q=80&w=400&sig=${i}`} 
-                  alt="Thumbnail"
+                  src={imgSrc} 
+                  alt={`Thumbnail ${i + 1}`}
                   className="w-full h-full object-cover rounded-xl opacity-40 hover:opacity-100 transition-opacity"
                   referrerPolicy="no-referrer"
                 />

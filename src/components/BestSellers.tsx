@@ -31,7 +31,7 @@ export default function BestSellers({ onProductClick, onAddToCart }: BestSellers
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
         {bestSellers.map((product) => (
           <ProductCard
             key={product.id}
