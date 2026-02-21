@@ -44,51 +44,50 @@ export default function AIRoastFinder({ onSelectProduct }: AIRoastFinderProps) {
   const recommendedProduct = PRODUCTS.find(p => p.id === recommendation?.productId);
 
   return (
-    <section className="py-24 max-w-7xl mx-auto px-6">
-      <div className="glass rounded-[32px] p-8 md:p-16 soft-shadow relative overflow-hidden">
+    <section className="py-32 max-w-7xl mx-auto px-6">
+      <div className="bg-white/50 border border-mocha/5 rounded-[48px] p-12 md:p-24 soft-shadow relative overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute -top-24 -right-24 w-64 h-64 bg-gold/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-mocha/5 rounded-full blur-3xl" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-mocha/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-beige/20 rounded-full blur-3xl" />
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 text-mocha">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          <div className="space-y-12">
+            <div className="space-y-6">
+              <div className="flex items-center gap-3 text-mocha">
                 <Sparkles className="w-5 h-5" />
-                <span className="font-bold tracking-widest uppercase text-xs">AI Sommelier</span>
+                <span className="font-bold tracking-[0.3em] uppercase text-[10px]">AI Sommelier.</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-espresso tracking-tight">
-                Find your perfect <br />
-                <span className="text-mocha italic font-serif">Morning Ritual</span>
+              <h2 className="text-6xl md:text-7xl font-serif font-bold text-espresso tracking-tight leading-none">
+                Find your <br />
+                <span className="text-mocha italic">Morning Ritual.</span>
               </h2>
-              <p className="text-text-secondary text-lg leading-relaxed">
+              <p className="text-text-secondary text-lg leading-relaxed max-w-md">
                 Tell us how you're feeling, and our AI will curate the ideal roast for your current state of mind.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div className="relative">
                 <input 
                   type="text" 
                   value={mood}
                   onChange={(e) => setMood(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && findRoast()}
-                  placeholder="e.g. 'Energetic and ready to conquer the day' or 'Cozy rainy afternoon'"
-                  className="w-full bg-white border border-mocha/10 rounded-2xl py-5 px-6 text-espresso placeholder:text-text-secondary/40 focus:outline-none focus:border-mocha transition-all soft-shadow"
+                  placeholder="How are you feeling today?"
+                  className="w-full bg-transparent border-b border-mocha/20 py-6 text-xl font-serif italic text-espresso placeholder:text-text-secondary/30 focus:outline-none focus:border-mocha transition-all"
                 />
                 <button 
                   onClick={findRoast}
                   disabled={isGenerating || !mood.trim()}
-                  className="absolute right-2 top-2 bottom-2 px-6 bg-mocha text-cream rounded-xl font-bold flex items-center gap-2 hover:bg-espresso transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="absolute right-0 bottom-6 text-mocha hover:text-espresso transition-colors disabled:opacity-30"
                 >
-                  {isGenerating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-                  Find Roast
+                  {isGenerating ? <Loader2 className="w-6 h-6 animate-spin" /> : <ArrowRight className="w-6 h-6" />}
                 </button>
               </div>
             </div>
           </div>
 
-          <div className="relative min-h-[300px] flex items-center justify-center">
+          <div className="relative min-h-[400px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               {!recommendation && !isGenerating && (
                 <motion.div 
@@ -96,12 +95,12 @@ export default function AIRoastFinder({ onSelectProduct }: AIRoastFinderProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="text-center space-y-4"
+                  className="text-center space-y-6"
                 >
-                  <div className="w-20 h-20 bg-mocha/5 rounded-full flex items-center justify-center mx-auto">
-                    <Coffee className="w-10 h-10 text-mocha/20" />
+                  <div className="w-24 h-24 bg-mocha/5 rounded-full flex items-center justify-center mx-auto">
+                    <Coffee className="w-10 h-10 text-mocha/10" />
                   </div>
-                  <p className="text-text-secondary italic">Your recommendation will appear here...</p>
+                  <p className="text-text-secondary italic font-serif">Awaiting your mood...</p>
                 </motion.div>
               )}
 
@@ -134,29 +133,31 @@ export default function AIRoastFinder({ onSelectProduct }: AIRoastFinderProps) {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   className="w-full"
                 >
-                  <div className="bg-white rounded-3xl p-6 soft-shadow flex flex-col md:flex-row gap-6 items-center">
-                    <div className="w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0">
+                  <div className="bg-white/80 backdrop-blur-md rounded-[32px] p-10 border border-mocha/10 flex flex-col md:flex-row gap-10 items-center">
+                    <div className="w-40 h-40 rounded-[24px] overflow-hidden flex-shrink-0 bg-cream/50 p-4">
                       <img 
                         src={recommendedProduct.image} 
                         alt={recommendedProduct.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         referrerPolicy="no-referrer"
                       />
                     </div>
-                    <div className="flex-1 space-y-2 text-center md:text-left">
-                      <div className="flex items-center justify-center md:justify-start gap-2">
-                        <span className="text-gold font-bold text-[10px] uppercase tracking-widest">Perfect Match</span>
-                        <div className="flex gap-0.5">
-                          {[...Array(5)].map((_, i) => <div key={i} className="w-1 h-1 bg-gold rounded-full" />)}
+                    <div className="flex-1 space-y-6 text-center md:text-left">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-center md:justify-start gap-3">
+                          <span className="text-gold font-bold text-[10px] uppercase tracking-[0.3em]">Perfect Match.</span>
+                          <div className="flex gap-1">
+                            {[...Array(3)].map((_, i) => <div key={i} className="w-1 h-1 bg-gold rounded-full" />)}
+                          </div>
                         </div>
+                        <h3 className="text-3xl font-serif font-bold text-espresso">{recommendedProduct.name}.</h3>
                       </div>
-                      <h3 className="text-2xl font-bold text-espresso">{recommendedProduct.name}</h3>
-                      <p className="text-text-secondary text-sm italic leading-relaxed">
+                      <p className="text-text-secondary text-lg font-serif italic leading-relaxed">
                         "{recommendation.reason}"
                       </p>
                       <button 
                         onClick={() => onSelectProduct(recommendedProduct)}
-                        className="text-mocha font-bold text-sm flex items-center gap-2 pt-2 mx-auto md:mx-0 hover:gap-3 transition-all"
+                        className="text-mocha font-bold text-[10px] uppercase tracking-[0.2em] flex items-center gap-2 pt-2 mx-auto md:mx-0 hover:gap-3 transition-all border-b border-mocha/20 pb-1"
                       >
                         View Roast Details <ArrowRight className="w-4 h-4" />
                       </button>

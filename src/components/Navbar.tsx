@@ -23,10 +23,13 @@ export default function Navbar({ currentView, onViewChange, onCartOpen, cartCoun
           </button>
           
           <div className="hidden md:flex items-center gap-8">
-            {['Shop', 'Roasts', 'About', 'Visit'].map((item) => (
+            {['Shop', 'Roasts', 'Journal', 'Visit'].map((item) => (
               <button
                 key={item}
-                onClick={() => item === 'Shop' ? onViewChange('shop') : null}
+                onClick={() => {
+                  if (item === 'Shop') onViewChange('shop');
+                  if (item === 'Journal' || item === 'Visit') onViewChange('home'); // Scroll to sections would be better but home is fine for now
+                }}
                 className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors hover:text-mocha ${
                   (item === 'Shop' && currentView === 'shop') ? 'text-mocha' : 'text-text-secondary'
                 }`}

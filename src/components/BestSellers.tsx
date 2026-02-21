@@ -14,12 +14,17 @@ export default function BestSellers({ onProductClick, onAddToCart }: BestSellers
 
   return (
     <section className="py-32 max-w-7xl mx-auto px-6">
-      <div className="flex items-center justify-between mb-20 border-b border-mocha/10 pb-8">
-        <h2 className="text-5xl md:text-6xl font-serif font-bold text-espresso tracking-tight">
-          House favourites.
-        </h2>
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 border-b border-mocha/10 pb-8 gap-8">
+        <div className="space-y-4">
+          <h2 className="text-6xl md:text-8xl font-serif font-bold text-espresso tracking-tight leading-none">
+            House favourites.
+          </h2>
+          <p className="text-text-secondary text-lg max-w-md">
+            Our most beloved roasts, chosen by our community for their exceptional character and consistency.
+          </p>
+        </div>
         <button 
-          onClick={() => onProductClick(PRODUCTS[0])} // Just a placeholder for "Shop All"
+          onClick={() => onProductClick(PRODUCTS[0])}
           className="px-8 py-3 border border-espresso text-espresso rounded-full text-xs font-bold uppercase tracking-widest hover:bg-espresso hover:text-cream transition-all duration-300"
         >
           Shop Now

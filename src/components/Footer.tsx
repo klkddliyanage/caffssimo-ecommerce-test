@@ -3,63 +3,63 @@ import { Instagram, Twitter, Facebook, ArrowRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-espresso text-cream pt-24 pb-12">
+    <footer className="bg-espresso text-cream pt-32 pb-12">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold tracking-tighter">Caffasimo</h3>
-            <p className="text-cream/60 text-sm leading-relaxed max-w-xs">
-              Crafting premium specialty coffee experiences through ethical sourcing and meticulous roasting.
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
+          <div className="lg:col-span-5 space-y-10">
+            <h3 className="text-4xl font-serif font-bold tracking-tight">Caffasimo.</h3>
+            <p className="text-cream/60 text-lg leading-relaxed max-w-sm">
+              Crafting premium specialty coffee experiences through ethical sourcing and meticulous roasting. A slow take on instant gratification.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-6">
               {[Instagram, Twitter, Facebook].map((Icon, i) => (
-                <button key={i} className="w-10 h-10 rounded-full border border-cream/10 flex items-center justify-center hover:bg-cream hover:text-espresso transition-all">
-                  <Icon className="w-4 h-4" />
+                <button key={i} className="text-cream/40 hover:text-cream transition-colors">
+                  <Icon className="w-5 h-5" />
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="space-y-6">
-            <h4 className="font-bold uppercase tracking-widest text-xs">Shop</h4>
-            <ul className="space-y-4 text-sm text-cream/60">
+          <div className="lg:col-span-2 space-y-8">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-cream/40">Shop.</h4>
+            <ul className="space-y-4 text-sm font-medium">
               {['All Coffee', 'Roast Levels', 'Equipment', 'Subscriptions'].map((item) => (
-                <li key={item} className="hover:text-cream transition-colors cursor-pointer">{item}</li>
+                <li key={item} className="hover:text-beige transition-colors cursor-pointer">{item}</li>
               ))}
             </ul>
           </div>
 
-          <div className="space-y-6">
-            <h4 className="font-bold uppercase tracking-widest text-xs">Company</h4>
-            <ul className="space-y-4 text-sm text-cream/60">
+          <div className="lg:col-span-2 space-y-8">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-cream/40">Company.</h4>
+            <ul className="space-y-4 text-sm font-medium">
               {['Our Story', 'Wholesale', 'Sustainability', 'Contact'].map((item) => (
-                <li key={item} className="hover:text-cream transition-colors cursor-pointer">{item}</li>
+                <li key={item} className="hover:text-beige transition-colors cursor-pointer">{item}</li>
               ))}
             </ul>
           </div>
 
-          <div className="space-y-6">
-            <h4 className="font-bold uppercase tracking-widest text-xs">Newsletter</h4>
+          <div className="lg:col-span-3 space-y-8">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-cream/40">Newsletter.</h4>
             <p className="text-cream/60 text-sm">Join our community for brewing tips and exclusive offers.</p>
             <div className="relative">
               <input 
                 type="email" 
-                placeholder="Your email address"
-                className="w-full bg-cream/5 border border-cream/10 rounded-xl py-4 px-6 text-sm focus:outline-none focus:border-gold transition-colors"
+                placeholder="Email address"
+                className="w-full bg-transparent border-b border-cream/20 py-4 text-sm focus:outline-none focus:border-cream transition-colors placeholder:text-cream/20"
               />
-              <button className="absolute right-2 top-2 bottom-2 w-10 h-10 bg-gold text-espresso rounded-lg flex items-center justify-center hover:bg-cream transition-colors">
-                <ArrowRight className="w-4 h-4" />
+              <button className="absolute right-0 top-1/2 -translate-y-1/2 text-cream hover:text-beige transition-colors">
+                <ArrowRight className="w-5 h-5" />
               </button>
             </div>
           </div>
         </div>
 
-        <div className="pt-12 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-xs text-cream/40">© 2026 Caffasimo Coffee Roasters. All rights reserved.</p>
-          <div className="flex gap-8 text-xs text-cream/40">
-            <span className="hover:text-cream cursor-pointer transition-colors">Privacy Policy</span>
-            <span className="hover:text-cream cursor-pointer transition-colors">Terms of Service</span>
-            <span className="hover:text-cream cursor-pointer transition-colors">Shipping Info</span>
+        <div className="pt-12 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cream/20">© 2026 Caffasimo Coffee Roasters.</p>
+          <div className="flex gap-12 text-[10px] font-bold uppercase tracking-[0.2em] text-cream/20">
+            <span className="hover:text-cream cursor-pointer transition-colors">Privacy</span>
+            <span className="hover:text-cream cursor-pointer transition-colors">Terms</span>
+            <span className="hover:text-cream cursor-pointer transition-colors">Shipping</span>
           </div>
         </div>
       </div>

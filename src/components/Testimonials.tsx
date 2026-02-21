@@ -4,35 +4,40 @@ import { TESTIMONIALS } from '../constants';
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-cream overflow-hidden">
+    <section className="py-32 bg-cream overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center space-y-4 mb-16">
-          <span className="text-mocha font-bold tracking-widest uppercase text-xs">Community</span>
-          <h2 className="text-4xl font-bold text-espresso tracking-tight">What Our Brewers Say</h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 border-b border-mocha/10 pb-12">
+          <div className="space-y-4">
+            <h2 className="text-6xl md:text-8xl font-serif font-bold text-espresso tracking-tight leading-none">
+              Community.
+            </h2>
+            <p className="text-text-secondary text-lg max-w-md">
+              Voices from our community of discerning brewers and coffee enthusiasts.
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           {TESTIMONIALS.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="glass p-8 rounded-3xl soft-shadow relative"
+              transition={{ delay: index * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-8"
             >
-              <Quote className="absolute top-6 right-8 w-12 h-12 text-mocha/5" />
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-0.5">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-gold text-gold" />
+                  <div key={i} className="w-1 h-1 bg-gold rounded-full" />
                 ))}
               </div>
-              <p className="text-espresso font-medium leading-relaxed mb-6 italic">
+              <p className="text-espresso text-xl font-serif italic leading-relaxed">
                 "{testimonial.content}"
               </p>
-              <div>
-                <h4 className="font-bold text-espresso">{testimonial.name}</h4>
-                <p className="text-xs text-text-secondary uppercase tracking-wider">{testimonial.role}</p>
+              <div className="pt-4 border-t border-mocha/10">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-espresso">{testimonial.name}.</h4>
+                <p className="text-[10px] text-text-secondary uppercase tracking-[0.3em]">{testimonial.role}</p>
               </div>
             </motion.div>
           ))}

@@ -16,6 +16,9 @@ import ShopPage from './components/ShopPage';
 import ProductPage from './components/ProductPage';
 import CartDrawer from './components/CartDrawer';
 import AIRoastFinder from './components/AIRoastFinder';
+import VisitUs from './components/VisitUs';
+import Journal from './components/Journal';
+import BrandPhilosophy from './components/BrandPhilosophy';
 import { View, Product, CartItem } from './types';
 
 export default function App() {
@@ -78,6 +81,9 @@ export default function App() {
               onProductClick={handleProductClick}
               onAddToCart={(p) => addToCart(p)}
             />
+            <VisitUs />
+            <BrandPhilosophy />
+            <Journal />
             <RoastLevels onExplore={() => setCurrentView('shop')} />
             <Testimonials />
           </motion.div>

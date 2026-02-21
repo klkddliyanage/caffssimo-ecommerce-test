@@ -30,21 +30,14 @@ export default function Hero({ onShopNow }: HeroProps) {
           <span className="inline-block text-mocha font-bold tracking-[0.2em] uppercase text-xs">
             Premium Specialty Coffee
           </span>
-          <h1 className="text-5xl md:text-7xl lg:text-9xl font-serif font-bold text-espresso tracking-tight leading-[0.85]">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-bold text-espresso tracking-tight leading-[0.85]">
             Crafted for <br />
             <span className="text-mocha italic">Slow Moments.</span>
           </h1>
+          <p className="text-text-secondary text-lg md:text-xl max-w-xl mx-auto leading-relaxed font-serif italic">
+            "A meticulously curated selection of the world's finest specialty roasts, sourced with integrity and roasted for the discerning palate."
+          </p>
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
-        >
-          Experience the art of roasting with our ethically sourced, 
-          small-batch beans delivered fresh to your doorstep.
-        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

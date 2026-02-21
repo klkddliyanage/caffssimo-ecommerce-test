@@ -28,43 +28,51 @@ const ROASTS = [
 
 export default function RoastLevels({ onExplore }: RoastLevelsProps) {
   return (
-    <section className="py-24 bg-cream">
+    <section className="py-32 bg-cream">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center space-y-4 mb-16">
-          <span className="text-mocha font-bold tracking-widest uppercase text-xs">The Spectrum</span>
-          <h2 className="text-4xl font-bold text-espresso tracking-tight">Shop by Roast Level</h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 border-b border-mocha/10 pb-12">
+          <div className="space-y-4">
+            <h2 className="text-6xl md:text-8xl font-serif font-bold text-espresso tracking-tight leading-none">
+              The spectrum.
+            </h2>
+            <p className="text-text-secondary text-lg max-w-md">
+              From bright and floral to bold and smoky. Discover the perfect roast for your palate.
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {ROASTS.map((roast, index) => (
             <motion.div
               key={roast.level}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
+              transition={{ delay: index * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => onExplore(roast.level)}
-              className="group cursor-pointer relative aspect-[3/4] rounded-3xl overflow-hidden soft-shadow"
+              className="group cursor-pointer space-y-8"
             >
-              <img 
-                src={roast.image} 
-                alt={roast.level}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+              <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden">
+                <img 
+                  src={roast.image} 
+                  alt={roast.level}
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-espresso/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
               
-              <div className="absolute inset-0 p-8 flex flex-col justify-end space-y-4">
-                <span className={`w-fit px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${roast.accent}`}>
-                  {roast.level}
-                </span>
-                <h3 className="text-3xl font-bold text-cream tracking-tight">{roast.level} Roast</h3>
-                <p className="text-cream/80 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {roast.description}
-                </p>
-                <button className="text-cream font-bold text-sm flex items-center gap-2 mt-2">
-                  Explore {roast.level} <ArrowRight className="w-4 h-4" />
+              <div className="space-y-4 text-center">
+                <div className="space-y-2">
+                  <h3 className="text-3xl font-serif font-bold text-espresso tracking-tight group-hover:text-mocha transition-colors">
+                    {roast.level} Roast.
+                  </h3>
+                  <p className="text-text-secondary text-sm leading-relaxed max-w-[240px] mx-auto">
+                    {roast.description}
+                  </p>
+                </div>
+                <button className="text-[10px] font-bold uppercase tracking-[0.2em] text-espresso border-b border-espresso pb-1 hover:text-mocha hover:border-mocha transition-colors">
+                  Explore {roast.level}
                 </button>
               </div>
             </motion.div>
