@@ -25,46 +25,30 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, onAddToCart
         onClick={onClick}
         className="group cursor-pointer relative flex flex-col h-full"
       >
-        <div className="relative aspect-[4/5] rounded-[24px] overflow-hidden bg-[#f4f3ee] flex items-center justify-center transition-colors duration-500 mb-8">
-          <AnimatePresence mode="wait">
-            {isHovered ? (
-              <motion.div
-                key="details"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="absolute inset-0 bg-[#f4f3ee] p-8 flex flex-col justify-center"
-              >
-                <div className="flex-1 flex flex-col justify-center max-w-[80%] mx-auto w-full">
-                  <div className="flex justify-between items-center border-b border-espresso/20 py-4">
-                    <span className="text-sm font-bold text-espresso">Coffee.</span>
-                    <span className="text-sm text-espresso text-right">{product.name}.</span>
-                  </div>
-                  <div className="flex justify-between items-center border-b border-espresso/20 py-4">
-                    <span className="text-sm font-bold text-espresso">Origin.</span>
-                    <span className="text-sm text-espresso text-right">{product.origin}</span>
-                  </div>
-                  <div className="flex justify-between items-center border-b border-espresso/20 py-4">
-                    <span className="text-sm font-bold text-espresso">Bag size.</span>
-                    <span className="text-sm text-espresso text-right">250g</span>
-                  </div>
-                </div>
-              </motion.div>
-            ) : (
-              <motion.img
-                key="image"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-cover mix-blend-multiply p-4"
-                referrerPolicy="no-referrer"
-              />
-            )}
-          </AnimatePresence>
+        <div className="relative aspect-[4/5] rounded-[48px] overflow-hidden bg-[#f4f3ee] flex items-center justify-center transition-colors duration-500 mb-8">
+          <img
+            src={product.image}
+            alt={product.name}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isHovered ? 'opacity-10' : 'opacity-100'}`}
+            referrerPolicy="no-referrer"
+          />
+          
+          <div className={`absolute inset-0 p-8 flex flex-col justify-center transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="w-full max-w-[85%] mx-auto">
+              <div className="flex justify-between items-center border-t border-b border-espresso/10 py-4">
+                <span className="text-sm font-bold text-espresso">Coffee.</span>
+                <span className="text-sm text-espresso text-right">{product.name}.</span>
+              </div>
+              <div className="flex justify-between items-center border-b border-espresso/10 py-4">
+                <span className="text-sm font-bold text-espresso">Origin.</span>
+                <span className="text-sm text-espresso text-right">{product.origin}</span>
+              </div>
+              <div className="flex justify-between items-center border-b border-espresso/10 py-4">
+                <span className="text-sm font-bold text-espresso">Bag size.</span>
+                <span className="text-sm text-espresso text-right">250g</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col flex-1 text-center px-4">
@@ -72,14 +56,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, onAddToCart
             {product.name}.
           </h3>
           <p className="text-sm text-text-secondary leading-relaxed mb-6 flex-1">
-            {product.description}
+            {product.description.split('.')[0]}.
           </p>
           <p className="text-base font-bold text-espresso mb-6">£{product.price.toFixed(2)}</p>
           
           <div className={`transition-all duration-300 overflow-hidden ${isHovered ? 'max-h-16 opacity-100' : 'max-h-0 opacity-0'}`}>
             <button 
               onClick={(e) => { e.stopPropagation(); onAddToCart(e); }}
-              className="w-full py-4 bg-espresso text-cream rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-mocha transition-colors"
+              className="w-full py-4 bg-[#1a1a1a] text-white rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-black transition-colors"
             >
               Buy Now
             </button>
@@ -96,9 +80,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, onAddToCart
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       onClick={onClick}
-      className="group cursor-pointer bg-white/50 rounded-3xl p-6 border border-mocha/5 hover:border-mocha/20 transition-all duration-500"
+      className="group cursor-pointer bg-white/50 rounded-[40px] p-6 border border-mocha/5 hover:border-mocha/20 transition-all duration-500"
     >
-      <div className="relative aspect-square rounded-2xl overflow-hidden bg-cream/50 mb-6">
+      <div className="relative aspect-square rounded-[32px] overflow-hidden bg-cream/50 mb-6">
         <motion.img
           src={product.image}
           alt={product.name}

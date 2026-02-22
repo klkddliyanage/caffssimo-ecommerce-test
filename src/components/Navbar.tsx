@@ -28,10 +28,12 @@ export default function Navbar({ currentView, onViewChange, onCartOpen, cartCoun
                 key={item}
                 onClick={() => {
                   if (item === 'Shop') onViewChange('shop');
-                  if (item === 'Journal' || item === 'Visit') onViewChange('home'); // Scroll to sections would be better but home is fine for now
+                  if (item === 'Roasts') onViewChange('roasts');
+                  if (item === 'Journal') onViewChange('journal');
+                  if (item === 'Visit') onViewChange('visit');
                 }}
                 className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors hover:text-mocha ${
-                  (item === 'Shop' && currentView === 'shop') ? 'text-mocha' : 'text-text-secondary'
+                  (item.toLowerCase() === currentView) ? 'text-mocha' : 'text-text-secondary'
                 }`}
               >
                 {item}

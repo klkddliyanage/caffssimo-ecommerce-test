@@ -79,20 +79,20 @@ export default function CartDrawer({
                     layout
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="flex gap-4"
+                    className="flex gap-6"
                   >
-                    <div className="w-24 h-24 rounded-xl overflow-hidden bg-white flex-shrink-0">
+                    <div className="w-24 h-24 rounded-[20px] overflow-hidden bg-[#f4f3ee] flex-shrink-0 flex items-center justify-center">
                       <img 
                         src={item.image} 
                         alt={item.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain p-2 mix-blend-multiply"
                         referrerPolicy="no-referrer"
                       />
                     </div>
-                    <div className="flex-1 flex flex-col justify-between">
+                    <div className="flex-1 flex flex-col justify-between py-1">
                       <div>
                         <div className="flex justify-between items-start">
-                          <h3 className="font-semibold text-espresso leading-tight">{item.name}</h3>
+                          <h3 className="font-serif font-bold text-espresso leading-tight text-lg">{item.name}.</h3>
                           <button 
                             onClick={() => onRemove(item.id)}
                             className="text-mocha/40 hover:text-red-500 transition-colors"
@@ -100,27 +100,27 @@ export default function CartDrawer({
                             <Trash2 className="w-4 h-4" />
                           </button>
                         </div>
-                        <p className="text-xs text-text-secondary mt-1">{item.grindType} • {item.roastLevel} Roast</p>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-text-secondary mt-2">{item.grindType} • {item.roastLevel} Roast</p>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center border border-mocha/10 rounded-lg overflow-hidden bg-white">
+                      <div className="flex justify-between items-center mt-4">
+                        <div className="flex items-center border border-mocha/10 rounded-full overflow-hidden bg-white/50 h-8">
                           <button 
                             onClick={() => onUpdateQuantity(item.id, -1)}
-                            className="p-1.5 hover:bg-mocha/5 transition-colors"
+                            className="px-3 hover:text-mocha transition-colors h-full flex items-center"
                           >
                             <Minus className="w-3 h-3" />
                           </button>
-                          <span className="px-3 text-sm font-medium text-espresso min-w-[32px] text-center">
+                          <span className="px-2 text-xs font-bold text-espresso min-w-[24px] text-center">
                             {item.quantity}
                           </span>
                           <button 
                             onClick={() => onUpdateQuantity(item.id, 1)}
-                            className="p-1.5 hover:bg-mocha/5 transition-colors"
+                            className="px-3 hover:text-mocha transition-colors h-full flex items-center"
                           >
                             <Plus className="w-3 h-3" />
                           </button>
                         </div>
-                        <p className="font-semibold text-espresso">${(item.price * item.quantity).toFixed(2)}</p>
+                        <p className="font-bold text-espresso">£{(item.price * item.quantity).toFixed(2)}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -129,15 +129,15 @@ export default function CartDrawer({
             </div>
 
             {items.length > 0 && (
-              <div className="p-6 bg-white border-t border-mocha/10 space-y-4">
+              <div className="p-8 bg-white border-t border-mocha/10 space-y-6">
                 <div className="flex justify-between items-center">
-                  <span className="text-text-secondary">Subtotal</span>
-                  <span className="text-xl font-bold text-espresso">${subtotal.toFixed(2)}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-text-secondary">Subtotal</span>
+                  <span className="text-2xl font-serif font-bold text-espresso">£{subtotal.toFixed(2)}</span>
                 </div>
-                <p className="text-xs text-text-secondary">Shipping and taxes calculated at checkout.</p>
+                <p className="text-[10px] uppercase tracking-widest text-text-secondary text-center">Shipping and taxes calculated at checkout.</p>
                 <button 
                   onClick={onCheckout}
-                  className="w-full py-4 bg-mocha text-cream rounded-xl font-semibold hover:bg-espresso transition-colors shadow-lg shadow-mocha/20 active:scale-[0.98]"
+                  className="w-full py-4 bg-espresso text-cream rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-mocha transition-colors shadow-2xl shadow-espresso/20 active:scale-[0.98]"
                 >
                   Proceed to Checkout
                 </button>

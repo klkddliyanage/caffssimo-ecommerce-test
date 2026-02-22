@@ -47,13 +47,13 @@ export default function Hero({ onShopNow }: HeroProps) {
         >
           <button 
             onClick={onShopNow}
-            className="group relative px-8 py-4 bg-mocha text-cream rounded-xl font-semibold overflow-hidden shadow-xl shadow-mocha/20 transition-all hover:bg-espresso active:scale-95"
+            className="group relative px-10 py-4 bg-mocha text-cream rounded-full font-semibold overflow-hidden shadow-xl shadow-mocha/20 transition-all hover:bg-espresso active:scale-95"
           >
             <span className="relative z-10 flex items-center gap-2">
               Shop Now <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </span>
           </button>
-          <button className="px-8 py-4 bg-white text-mocha border border-mocha/10 rounded-xl font-semibold hover:bg-beige transition-all active:scale-95">
+          <button className="px-10 py-4 bg-white text-mocha border border-mocha/10 rounded-full font-semibold hover:bg-beige transition-all active:scale-95">
             Explore Roasts
           </button>
         </motion.div>

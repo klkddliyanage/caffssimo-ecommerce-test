@@ -34,14 +34,14 @@ export default function ProductPage({ product, onBack, onAddToCart }: ProductPag
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-8"
         >
-          <div className="aspect-[4/5] rounded-[40px] overflow-hidden bg-white/50 border border-mocha/5 p-12 flex items-center justify-center">
+          <div className="aspect-[4/5] rounded-[40px] overflow-hidden bg-[#f4f3ee] flex items-center justify-center mb-8">
             <motion.img 
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 1 }}
               src={product.image} 
               alt={product.name}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain p-12 mix-blend-multiply"
               referrerPolicy="no-referrer"
             />
           </div>

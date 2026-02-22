@@ -50,7 +50,7 @@ export default function ShopPage({ onProductClick, onAddToCart }: ShopPageProps)
                 placeholder="Search roasts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-6 py-4 bg-transparent border-b border-mocha/20 text-sm focus:outline-none focus:border-mocha transition-colors"
+                className="w-full pl-11 pr-6 py-4 bg-white/50 border border-mocha/10 rounded-full text-sm focus:outline-none focus:border-mocha transition-colors"
               />
             </div>
             <button className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-mocha hover:text-espresso transition-colors">
@@ -83,7 +83,7 @@ export default function ShopPage({ onProductClick, onAddToCart }: ShopPageProps)
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16">
         {filteredProducts.map((product, index) => (
           <motion.div
             key={product.id}

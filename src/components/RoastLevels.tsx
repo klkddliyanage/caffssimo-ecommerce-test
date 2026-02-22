@@ -52,9 +52,9 @@ export default function RoastLevels({ onExplore }: RoastLevelsProps) {
               onClick={() => onExplore(roast.level)}
               className="group cursor-pointer space-y-8"
             >
-              <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden">
+              <div className="relative aspect-[4/5] rounded-[48px] overflow-hidden">
                 <img 
-                  src={roast.image} 
+                  src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800" 
                   alt={roast.level}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   referrerPolicy="no-referrer"
