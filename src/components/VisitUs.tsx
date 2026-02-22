@@ -11,7 +11,7 @@ export default function VisitUs() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative aspect-[4/5] rounded-[40px] overflow-hidden group"
+          className="relative aspect-[4/5] rounded-[48px] overflow-hidden group"
         >
           <img 
             src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1200" 
@@ -48,7 +48,7 @@ export default function VisitUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="hidden lg:block absolute -bottom-32 -right-16 w-64 aspect-square rounded-3xl overflow-hidden border-8 border-cream soft-shadow"
+              className="hidden lg:block absolute -bottom-32 -right-16 w-64 aspect-square rounded-[32px] overflow-hidden border-8 border-cream soft-shadow"
             >
               <img 
                 src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&q=80&w=600" 

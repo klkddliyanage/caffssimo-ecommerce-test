@@ -6,7 +6,7 @@ const ARTICLES = [
     category: 'Spotlight.',
     title: 'Introducing: matcha.',
     excerpt: 'Three drinks. Two matchas. No shortcuts. Every ingredient we serve is carefully chosen...',
-    image: 'https://images.unsplash.com/photo-1515823662273-ad95253b39dd?auto=format&fit=crop&q=80&w=600'
+    image: 'https://images.unsplash.com/photo-1582722872445-44c56bb62741?auto=format&fit=crop&q=80&w=600'
   },
   {
     category: 'Origin.',
@@ -42,9 +42,9 @@ export default function Journal() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7 space-y-8 group cursor-pointer"
         >
-          <div className="relative aspect-[16/10] rounded-[40px] overflow-hidden">
+          <div className="relative aspect-[16/10] rounded-[48px] overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1497933322477-911f93bb7867?auto=format&fit=crop&q=80&w=1200" 
+              src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&q=80&w=1200" 
               alt="Featured article"
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               referrerPolicy="no-referrer"
@@ -90,7 +90,7 @@ export default function Journal() {
                   Read More
                 </button>
               </div>
-              <div className="aspect-square rounded-3xl overflow-hidden order-1 sm:order-2">
+              <div className="aspect-square rounded-[32px] overflow-hidden order-1 sm:order-2">
                 <img 
                   src={article.image} 
                   alt={article.title}

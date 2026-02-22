@@ -20,7 +20,7 @@ export default function BrandPhilosophy() {
         className="absolute inset-0 z-0"
       >
         <img 
-          src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&q=80&w=1920" 
+          src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1920" 
           alt="Coffee shop atmosphere"
           className="w-full h-full object-cover brightness-[0.6]"
           referrerPolicy="no-referrer"
