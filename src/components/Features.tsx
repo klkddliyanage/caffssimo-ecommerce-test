@@ -38,6 +38,9 @@ export default function Features() {
               transition={{ delay: index * 0.1, duration: 0.8 }}
               className="space-y-6"
             >
+              <div className="w-16 h-16 rounded-[24px] bg-mocha/5 flex items-center justify-center text-mocha mb-8 transition-transform duration-500 hover:scale-110 hover:rotate-3">
+                <feature.icon className="w-8 h-8" strokeWidth={1.5} />
+              </div>
               <div className="space-y-4">
                 <h3 className="text-2xl font-serif font-bold text-espresso leading-tight">
                   {feature.title}.
