@@ -53,7 +53,7 @@ export default function Journal() {
             <div className="absolute bottom-10 left-10 right-10">
               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-cream/70 mb-4 block">Spotlight.</span>
               <h3 className="text-4xl md:text-5xl font-serif font-bold text-cream leading-tight">
-                Caffasimo x <br /> NOMAD.
+                Caffissimo x <br /> NOMAD.
               </h3>
             </div>
           </div>

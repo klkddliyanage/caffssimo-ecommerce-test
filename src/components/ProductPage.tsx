@@ -15,12 +15,12 @@ export default function ProductPage({ product, onBack, onAddToCart }: ProductPag
   const [selectedGrind, setSelectedGrind] = useState(GRIND_TYPES[0]);
 
   return (
-    <div className="pt-40 pb-32 max-w-7xl mx-auto px-6">
+    <div className="pt-24 pb-32 max-w-7xl mx-auto px-6">
       <motion.button 
         initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
         onClick={onBack}
-        className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary hover:text-mocha transition-colors mb-16 group"
+        className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-text-secondary hover:text-mocha transition-colors mb-12 group"
       >
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
         Back to Collection
@@ -34,14 +34,14 @@ export default function ProductPage({ product, onBack, onAddToCart }: ProductPag
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="space-y-8"
         >
-          <div className="aspect-[4/5] rounded-[40px] overflow-hidden bg-[#f4f3ee] flex items-center justify-center mb-8">
+          <div className="aspect-[4/5] rounded-[24px] overflow-hidden bg-[#f4f3ee] flex items-center justify-center mb-8">
             <motion.img 
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 1 }}
               src={product.image} 
               alt={product.name}
-              className="w-full h-full object-contain p-12 mix-blend-multiply"
+              className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
           </div>

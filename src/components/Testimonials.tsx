@@ -4,11 +4,11 @@ import { TESTIMONIALS } from '../constants';
 
 export default function Testimonials() {
   return (
-    <section className="py-32 bg-cream overflow-hidden">
+    <section className="py-16 bg-cream overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 border-b border-mocha/10 pb-12">
           <div className="space-y-4">
-            <h2 className="text-6xl md:text-8xl font-serif font-bold text-espresso tracking-tight leading-none">
+            <h2 className="text-5xl md:text-6xl font-serif font-bold text-espresso tracking-tight leading-none">
               Community.
             </h2>
             <p className="text-text-secondary text-lg max-w-md">

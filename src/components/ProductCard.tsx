@@ -25,7 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, onAddToCart
         onClick={onClick}
         className="group cursor-pointer relative flex flex-col h-full"
       >
-        <div className="relative aspect-[4/5] rounded-[48px] overflow-hidden bg-[#f4f3ee] flex items-center justify-center transition-colors duration-500 mb-8">
+        <div className="relative aspect-[4/5] rounded-[24px] overflow-hidden bg-[#f4f3ee] group-hover:bg-[#E8DCCB] flex items-center justify-center transition-colors duration-500 mb-8">
           <img
             src={product.image}
             alt={product.name}

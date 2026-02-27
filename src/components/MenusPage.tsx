@@ -89,7 +89,7 @@ function MenuSection({
       transition={{ duration: 0.4, delay: index * 0.05 }}
       className="border-b border-mocha/10 pb-12 md:pb-16 last:border-0"
     >
-      <p className={LABEL + ' mb-2'}>{section.label}</p>
+      {/* <p className={LABEL + ' mb-2'}>{section.label}</p> */}
       <h2 className={SECTION_HEADING + ' mb-8'}>{section.label}</h2>
       <ul className="space-y-6">
         {section.items.map((item) => (
@@ -128,7 +128,7 @@ export default function MenusPage() {
             Food & drink at our cafés
           </h1>
           <p className="text-text-secondary text-lg leading-relaxed">
-            Our offerings are designed to pair perfectly with great coffee. Menu items may vary by branch—ask in store for the full selection.
+            Our offerings are designed to pair perfectly with great coffee. Menu items may vary by branch, ask in store for the full selection.
           </p>
         </motion.header>
 

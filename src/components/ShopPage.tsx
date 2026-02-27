@@ -26,16 +26,16 @@ export default function ShopPage({ selectedBranchId, onProductClick, onAddToCart
   }, [selectedRoast, searchQuery]);
 
   return (
-    <div className="pt-40 pb-32 max-w-7xl mx-auto px-6">
+    <div className="pt-24 pb-32 max-w-7xl mx-auto px-6">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-24 space-y-12"
+        className="mb-12 space-y-12"
       >
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 border-b border-mocha/10 pb-12">
           <div className="space-y-4">
-            <h1 className="text-6xl md:text-8xl font-serif font-bold text-espresso tracking-tight leading-none">
+            <h1 className="text-5xl md:text-6xl font-serif font-bold text-espresso tracking-tight leading-none">
               The Collection.
             </h1>
             <p className="text-text-secondary text-lg max-w-md">

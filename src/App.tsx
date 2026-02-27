@@ -12,6 +12,7 @@ import RoastLevels from './components/RoastLevels';
 import Features from './components/Features';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
+import Offers from './components/Offers';
 import ShopPage from './components/ShopPage';
 import ProductPage from './components/ProductPage';
 import CartDrawer from './components/CartDrawer';
@@ -96,15 +97,16 @@ export default function App() {
           >
             <Hero onShopNow={() => setCurrentView('shop')} atHero={atHero} />
             <Features />
-            <AIRoastFinder onSelectProduct={handleProductClick} />
+            <Offers />
             <BestSellers 
               onProductClick={handleProductClick}
               onAddToCart={(p) => addToCart(p)}
             />
-            <VisitUs />
+            <AIRoastFinder onSelectProduct={handleProductClick} />
             <BrandPhilosophy />
-            <Journal />
-            <RoastLevels onExplore={() => setCurrentView('shop')} />
+            {/* <Journal /> */}
+            {/* <RoastLevels onExplore={() => setCurrentView('shop')} /> */}
+            <VisitUs />
             <Testimonials />
           </motion.div>
         );

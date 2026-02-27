@@ -13,10 +13,10 @@ export default function BestSellers({ onProductClick, onAddToCart }: BestSellers
   const bestSellers = PRODUCTS.slice(0, 3);
 
   return (
-    <section className="py-32 max-w-7xl mx-auto px-6">
+    <section className="py-16 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 border-b border-mocha/10 pb-8 gap-8">
         <div className="space-y-4">
-          <h2 className="text-6xl md:text-8xl font-serif font-bold text-espresso tracking-tight leading-none">
+          <h2 className="text-5xl md:text-6xl font-serif font-bold text-espresso tracking-tight leading-none">
             House favourites.
           </h2>
           <p className="text-text-secondary text-lg max-w-md">

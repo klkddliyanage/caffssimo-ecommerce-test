@@ -29,7 +29,7 @@ export default function OwnACafePage({ onNavigateToContact }: OwnACafePageProps)
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mb-20 md:mb-28"
+          className="max-w-4xl mb-20 md:mb-20"
         >
           <p className={LABEL + ' mb-4'}>Franchise opportunity</p>
           <h1 className={HEADING + ' mb-6'}>
@@ -40,7 +40,7 @@ export default function OwnACafePage({ onNavigateToContact }: OwnACafePageProps)
           </p>
         </motion.header>
 
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-24 md:space-y-24">
           {/* Why partner with us */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -51,7 +51,7 @@ export default function OwnACafePage({ onNavigateToContact }: OwnACafePageProps)
           >
             <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-mocha/10">
               <img
-                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800"
+                src="/caffissimo2.jpeg" 
                 alt="Café interior"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
@@ -65,16 +65,16 @@ export default function OwnACafePage({ onNavigateToContact }: OwnACafePageProps)
               <p className={BODY}>
                 Our franchise model is built on clarity, support, and a shared commitment to quality. From site selection to day-one opening and beyond, we work alongside you to create a café that reflects the brand and thrives in your market.
               </p>
-              <ul className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                 {BENEFITS.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="shrink-0 w-6 h-6 rounded-full bg-mocha/10 flex items-center justify-center mt-0.5">
-                      <Check className="w-3.5 h-3.5 text-mocha" />
+                  <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-white/60 border border-mocha/5 hover:bg-white hover:shadow-lg hover:shadow-mocha/5 transition-all duration-300 group">
+                    <span className="shrink-0 w-8 h-8 rounded-full bg-mocha/10 group-hover:bg-espresso flex items-center justify-center transition-colors">
+                      <Check className="w-4 h-4 text-mocha group-hover:text-cream transition-colors" />
                     </span>
-                    <span className="text-text-primary">{item}</span>
-                  </li>
+                    <span className="text-sm font-medium text-text-primary leading-tight pt-1.5">{item}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </motion.section>
 
@@ -91,7 +91,7 @@ export default function OwnACafePage({ onNavigateToContact }: OwnACafePageProps)
               Available locations & next steps
             </h2>
             <p className={BODY + ' max-w-2xl mb-10'}>
-              We are actively expanding into new markets. Whether you have a site in mind or want to explore options in your region, we would like to hear from you. Tell us about your experience and goals, and we will share how the Caffasimo opportunity can work for you.
+              We are actively expanding into new markets. Whether you have a site in mind or want to explore options in your region, we would like to hear from you. Tell us about your experience and goals, and we will share how the Caffissimo opportunity can work for you.
             </p>
             <div className="flex flex-wrap gap-4">
               {onNavigateToContact ? (
@@ -111,10 +111,10 @@ export default function OwnACafePage({ onNavigateToContact }: OwnACafePageProps)
                 </a>
               )}
               <a
-                href="mailto:franchise@caffasimo.com"
+                href="mailto:franchise@Caffissimo.com"
                 className="inline-block px-10 py-4 border border-espresso text-espresso rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-espresso hover:text-cream transition-all duration-300"
               >
-                franchise@caffasimo.com
+                franchise@Caffissimo.com
               </a>
             </div>
           </motion.section>

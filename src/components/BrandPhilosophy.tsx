@@ -8,8 +8,12 @@ export default function BrandPhilosophy() {
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  // By adjusting the Y range to start at a negative offset or 0 and only going positive, we prevent the "brown gap" at the top when scrolling up.
+  // Actually, setting a hard top offset to the container also works safely, or we can just shift the scale more.
+  // Let's change the y transform to translate between -10% and 10% and ensure the image size accommodates it.
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  // We need to scale the image slightly more to account for this transform without exposing edges.
+  const scale = useTransform(scrollYProgress, [0, 1], [1.1, 1.2]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
@@ -17,12 +21,12 @@ export default function BrandPhilosophy() {
       {/* Parallax Background */}
       <motion.div 
         style={{ y, scale }}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 bg-black"
       >
         <img 
-          src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1920" 
+          src="/store.jpg" 
           alt="Coffee shop atmosphere"
-          className="w-full h-full object-cover brightness-[0.6]"
+          className="w-full h-full object-cover brightness-[0.3]"
           referrerPolicy="no-referrer"
         />
       </motion.div>
@@ -30,13 +34,13 @@ export default function BrandPhilosophy() {
       {/* Content Overlay */}
       <motion.div 
         style={{ opacity }}
-        className="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-12"
+        className="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-10"
       >
-        <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-cream tracking-tight leading-[1.1]">
-          Caffasimo is a slow take on <br />
+        <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-cream tracking-tight leading-[1.1]">
+          Caffissimo is a slow take on <br />
           <span className="italic text-beige">instant gratification.</span>
         </h2>
-        <p className="text-cream/80 text-xl md:text-2xl font-light max-w-3xl mx-auto leading-relaxed">
+        <p className="text-cream/80 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
           Thoughtful pours, rare flavor profiles and paraphernalia for your daily cup. We believe every bean tells a story worth listening to.
         </p>
         <div className="pt-8">

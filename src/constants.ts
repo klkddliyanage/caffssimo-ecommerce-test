@@ -6,7 +6,7 @@ export const PRODUCTS: Product[] = [
     name: 'Ethiopia Yirgacheffe',
     price: 24.00,
     roastLevel: 'Light',
-    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1621135177072-57c9b6242e7a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     description: 'A delicate and floral coffee with notes of jasmine, lemon, and peach. Grown in the high altitudes of the Yirgacheffe region.',
     flavorNotes: ['Jasmine', 'Lemon', 'Peach'],
     origin: 'Ethiopia',
@@ -17,7 +17,7 @@ export const PRODUCTS: Product[] = [
     name: 'Colombia Huila',
     price: 22.00,
     roastLevel: 'Medium',
-    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     description: 'Balanced and sweet with a rich chocolate body and subtle nutty undertones. A classic morning brew.',
     flavorNotes: ['Chocolate', 'Caramel', 'Walnut'],
     origin: 'Colombia',
@@ -28,7 +28,7 @@ export const PRODUCTS: Product[] = [
     name: 'Sumatra Mandheling',
     price: 26.00,
     roastLevel: 'Dark',
-    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1522675397120-8cb88c83ac16?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     description: 'Earthy and bold with low acidity and a heavy body. Notes of cedar, spice, and dark chocolate.',
     flavorNotes: ['Cedar', 'Tobacco', 'Dark Chocolate'],
     origin: 'Indonesia',
@@ -81,14 +81,14 @@ export const TESTIMONIALS = [
     id: '2',
     name: 'Marcus Chen',
     role: 'Home Barista',
-    content: 'Caffasimo has completely changed my morning routine. The freshness of the beans is unmatched.',
+    content: 'Caffissimo has completely changed my morning routine. The freshness of the beans is unmatched.',
     rating: 5,
   },
   {
     id: '3',
     name: 'Elena Rodriguez',
     role: 'Cafe Owner',
-    content: 'We started serving Caffasimo in our shop last month and our customers can\'t get enough of the Colombia Huila.',
+    content: 'We started serving Caffissimo in our shop last month and our customers can\'t get enough of the Colombia Huila.',
     rating: 5,
   }
 ];
@@ -102,8 +102,8 @@ export const GRIND_TYPES = [
 ];
 
 // Replace with your actual delivery page URLs
-export const DOORDASH_URL = 'https://www.doordash.com/store/your-caffasimo-store/';
-export const UBER_EATS_URL = 'https://www.ubereats.com/store/your-caffasimo-store/';
+export const DOORDASH_URL = 'https://www.doordash.com/store/your-Caffissimo-store/';
+export const UBER_EATS_URL = 'https://www.ubereats.com/store/your-Caffissimo-store/';
 
 export interface Branch {
   id: string;
@@ -132,7 +132,7 @@ export const ALL_BRANCHES_MAP_EMBED_URL =
 export const BRANCHES: Branch[] = [
   {
     id: 'downtown',
-    name: 'Caffasimo Downtown',
+    name: 'Caffissimo Downtown',
     address: '123 Main Street',
     city: 'San Francisco, CA',
     openingHours: 'Mon–Fri 7:00 AM – 7:00 PM, Sat–Sun 8:00 AM – 6:00 PM',
@@ -144,7 +144,7 @@ export const BRANCHES: Branch[] = [
   },
   {
     id: 'harbor',
-    name: 'Caffasimo Harbor View',
+    name: 'Caffissimo Harbor View',
     address: '456 Harbor Drive',
     city: 'San Francisco, CA',
     openingHours: 'Daily 6:30 AM – 8:00 PM',
@@ -156,7 +156,7 @@ export const BRANCHES: Branch[] = [
   },
   {
     id: 'heights',
-    name: 'Caffasimo The Heights',
+    name: 'Caffissimo The Heights',
     address: '789 Oak Avenue',
     city: 'Oakland, CA',
     openingHours: 'Mon–Sat 7:00 AM – 6:00 PM, Sun 8:00 AM – 4:00 PM',
@@ -184,15 +184,15 @@ export interface ContactInfo {
 }
 
 export const CONTACT_INFO: ContactInfo = {
-  companyName: 'Caffasimo',
-  email: 'hello@caffasimo.com',
+  companyName: 'Caffissimo',
+  email: 'hello@Caffissimo.com',
   phone: '(415) 555-0100',
   address: '123 Main Street',
   city: 'San Francisco, CA',
   postalCode: '94102',
   openingHours: 'Mon–Fri 8:00 AM – 6:00 PM',
   social: [
-    { label: 'Instagram', url: 'https://instagram.com/caffasimo' },
-    { label: 'Facebook', url: 'https://facebook.com/caffasimo' },
+    { label: 'Instagram', url: 'https://instagram.com/Caffissimo' },
+    { label: 'Facebook', url: 'https://facebook.com/Caffissimo' },
   ],
 };

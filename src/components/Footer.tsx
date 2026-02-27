@@ -3,15 +3,15 @@ import { Instagram, Twitter, Facebook, ArrowRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-espresso text-cream pt-32 pb-12">
+    <footer className="bg-espresso text-cream pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
-          <div className="lg:col-span-5 space-y-10">
-            <h3 className="text-4xl font-serif font-bold tracking-tight">Caffasimo.</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-12">
+          <div className="lg:col-span-5 space-y-2">
+            <img src="/logo.png" alt="Caffissimo Logo" className="h-16 md:h-28 w-auto object-contain brightness-0 invert" />
             <p className="text-cream/60 text-lg leading-relaxed max-w-sm">
               Crafting premium specialty coffee experiences through ethical sourcing and meticulous roasting. A slow take on instant gratification.
             </p>
-            <div className="flex gap-6">
+            <div className="flex gap-6 pt-8">
               {[Instagram, Twitter, Facebook].map((Icon, i) => (
                 <button key={i} className="text-cream/40 hover:text-cream transition-colors">
                   <Icon className="w-5 h-5" />
@@ -55,7 +55,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-12 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cream/20">© 2026 Caffasimo Coffee Roasters.</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cream/20">© 2026 Caffissimo Coffee Roasters.</p>
           <div className="flex gap-12 text-[10px] font-bold uppercase tracking-[0.2em] text-cream/20">
             <span className="hover:text-cream cursor-pointer transition-colors">Privacy</span>
             <span className="hover:text-cream cursor-pointer transition-colors">Terms</span>

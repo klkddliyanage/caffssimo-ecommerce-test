@@ -51,7 +51,7 @@ export default function BranchMap({ branches, className = '' }: BranchMapProps) 
         zoom={11}
         scrollWheelZoom={true}
         className="h-full w-full min-h-[280px]"
-        style={{ background: 'var(--color-cream, #F5EFE6)' }}
+        style={{ background: 'var(--color-cream, #F5EFE6)', zIndex: -1 }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

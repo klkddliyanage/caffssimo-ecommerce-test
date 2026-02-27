@@ -92,7 +92,7 @@ export default function AboutPage() {
               <div>
                 <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-mocha mb-3">Franchise presence</h3>
                 <p className="text-text-secondary leading-relaxed">
-                  As a strong franchise brand, we bring the same quality, training, and support to every location so the Caffasimo experience is consistent everywhere.
+                  As a strong franchise brand, we bring the same quality, training, and support to every location so the Caffissimo experience is consistent everywhere.
                 </p>
               </div>
             </div>

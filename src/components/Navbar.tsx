@@ -22,9 +22,9 @@ type NavItem =
 
 const NAV_ITEMS: NavItem[] = [
   { id: 'shop', label: 'Shop', dropdown: true },
+  { id: 'menus', label: 'Menus', view: 'menus' },
   { id: 'about', label: 'About', view: 'about' },
   { id: 'branches', label: 'Branches', view: 'branches' },
-  { id: 'menus', label: 'Menus', view: 'menus' },
   { id: 'ownACafe', label: 'Own a Cafe', view: 'ownACafe' },
   { id: 'employment', label: 'Employment', view: 'employment' },
   { id: 'contact', label: 'Contact', view: 'contact' },
@@ -34,7 +34,7 @@ const BRANCH_LABEL_MAX = 14;
 
 function getBranchLabel(id: string | null): string {
   if (!id) return 'Branch';
-  const name = BRANCHES.find((b) => b.id === id)?.name.replace(/^Caffasimo\s+/, '');
+  const name = BRANCHES.find((b) => b.id === id)?.name.replace(/^Caffissimo\s+/, '');
   if (!name) return 'Branch';
   return name.length > BRANCH_LABEL_MAX ? name.slice(0, BRANCH_LABEL_MAX) + '…' : name;
 }
@@ -77,7 +77,7 @@ export default function Navbar({
           >
             <img
               src="/logo.png"
-              alt="Caffasimo"
+              alt="Caffissimo"
               className={`w-auto object-contain transition-all duration-300 ${
                 isExpanded ? 'h-14 md:h-20' : 'h-12 md:h-14'
               } ${isLight ? 'brightness-0 invert' : ''}`}

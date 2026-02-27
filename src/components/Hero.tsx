@@ -21,7 +21,7 @@ export default function Hero({ onShopNow, atHero = true }: HeroProps) {
           alt="Hero background"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-cream/10 to-cream" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-60% to-cream" />
       </div>
 
       <div className="relative z-10 w-full max-w-4xl mx-auto px-6 flex flex-col items-center justify-center text-center space-y-8">
@@ -68,7 +68,8 @@ export default function Hero({ onShopNow, atHero = true }: HeroProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
+        // Stick tight against the bottom edge so it avoids the central hero content
+        className="absolute bottom-0 pb-4 left-1/2 -translate-x-1/2 flex-col items-center gap-4 hidden sm:flex lg:flex [@media(max-height:700px)]:hidden"
       >
         <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/80">Scroll to explore</span>
         <div className="w-px h-12 bg-gradient-to-b from-black/60 to-transparent" />
