@@ -27,16 +27,29 @@ import EmploymentPage from './components/EmploymentPage';
 import ContactPage from './components/ContactPage';
 import { View, Product, CartItem } from './types';
 
+const HERO_SCROLL_THRESHOLD = 80;
+
 export default function App() {
   const [currentView, setCurrentView] = useState<View>('home');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedBranchId, setSelectedBranchId] = useState<string | null>(null);
+  const [atHero, setAtHero] = useState(true);
 
   // Scroll to top on view change
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [currentView]);
+
+  // Track hero section for navbar size and hero padding
+  useEffect(() => {
+    const onScroll = () => {
+      setAtHero(currentView === 'home' && window.scrollY < HERO_SCROLL_THRESHOLD);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, [currentView]);
 
   const addToCart = (product: Product, quantity: number = 1, grind: string = 'Whole Bean') => {
@@ -81,7 +94,7 @@ export default function App() {
             exit={{ opacity: 0 }}
             className="space-y-0"
           >
-            <Hero onShopNow={() => setCurrentView('shop')} />
+            <Hero onShopNow={() => setCurrentView('shop')} atHero={atHero} />
             <Features />
             <AIRoastFinder onSelectProduct={handleProductClick} />
             <BestSellers 
@@ -197,9 +210,10 @@ export default function App() {
         cartCount={cart.reduce((sum, i) => sum + i.quantity, 0)}
         selectedBranchId={selectedBranchId}
         onSelectBranch={setSelectedBranchId}
+        atHero={atHero}
       />
 
-      <main className="flex-grow">
+      <main className="flex-grow pt-6 md:pt-6">
         <AnimatePresence mode="wait">
           {renderView()}
         </AnimatePresence>

@@ -44,7 +44,7 @@ export default function AIRoastFinder({ onSelectProduct }: AIRoastFinderProps) {
   const recommendedProduct = PRODUCTS.find(p => p.id === recommendation?.productId);
 
   return (
-    <section className="py-32 max-w-7xl mx-auto px-6">
+    <section className="py-16 max-w-7xl mx-auto px-6">
       <div className="bg-white/50 border border-mocha/5 rounded-[48px] p-12 md:p-24 soft-shadow relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-mocha/5 rounded-full blur-3xl" />

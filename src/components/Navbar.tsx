@@ -13,6 +13,7 @@ interface NavbarProps {
   cartCount: number;
   selectedBranchId?: string | null;
   onSelectBranch?: (branchId: string) => void;
+  atHero?: boolean;
 }
 
 type NavItem =
@@ -45,24 +46,27 @@ export default function Navbar({
   cartCount,
   selectedBranchId = null,
   onSelectBranch,
+  atHero = true,
 }: NavbarProps) {
   const [isBranchesOpen, setIsBranchesOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
-  useEffect(() => {
-    if (!isMobileOpen) return;
-    const onEscape = (e: KeyboardEvent) => e.key === 'Escape' && setIsMobileOpen(false);
-    document.addEventListener('keydown', onEscape);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', onEscape);
-      document.body.style.overflow = '';
-    };
-  }, [isMobileOpen]);
+  const isLight = atHero;
+  const isExpanded = atHero;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 px-6 py-4">
-      <header className="max-w-7xl mx-auto flex items-center justify-between h-12 md:h-14 px-6 rounded-xl bg-white/90 backdrop-blur-md border border-mocha/[0.06] shadow-[0_1px_3px_rgba(43,30,24,0.04)]">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 ${
+        isLight
+          ? 'bg-transparent border-b border-transparent'
+          : 'bg-white/70 backdrop-blur-xl border-b border-mocha/[0.08] shadow-[0_1px_3px_rgba(43,30,24,0.06)]'
+      }`}
+    >
+      <header
+        className={`max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 transition-all duration-300 ${
+          isExpanded ? 'h-16 md:h-20 py-2' : 'h-12 md:h-14'
+        }`}
+      >
         {/* Left: logo + nav */}
         <div className="flex items-center gap-4 md:gap-5 min-w-0">
           <button
@@ -74,7 +78,9 @@ export default function Navbar({
             <img
               src="/logo.png"
               alt="Caffasimo"
-              className="h-12 md:h-14 w-auto object-contain"
+              className={`w-auto object-contain transition-all duration-300 ${
+                isExpanded ? 'h-14 md:h-20' : 'h-12 md:h-14'
+              } ${isLight ? 'brightness-0 invert' : ''}`}
             />
           </button>
 
@@ -86,6 +92,7 @@ export default function Navbar({
                     key={item.id}
                     currentView={currentView}
                     onViewChange={onViewChange}
+                    light={isLight}
                   />
                 );
               }
@@ -96,8 +103,12 @@ export default function Navbar({
                     key={item.id}
                     type="button"
                     onClick={() => onViewChange(item.view)}
-                    className={`nav-item py-1.5 px-1 transition-colors duration-200 ${
-                      isActive ? 'nav-item-active' : 'nav-item-default'
+                    className={`nav-item py-1.5 px-1 transition-all duration-200 ${
+                      isLight
+                        ? `text-white/95 hover:text-white ${isActive ? 'font-bold' : ''}`
+                        : isActive
+                          ? 'nav-item-active'
+                          : 'nav-item-default'
                     }`}
                   >
                     {item.label}
@@ -114,7 +125,11 @@ export default function Navbar({
           <button
             type="button"
             onClick={() => setIsBranchesOpen(true)}
-            className="hidden sm:flex items-center gap-1.5 h-9 pl-3.5 pr-2.5 rounded-full border border-mocha/10 bg-mocha/[0.03] text-text-secondary hover:border-mocha/20 hover:bg-mocha/5 hover:text-mocha transition-all duration-200 text-[11px] font-semibold tracking-[0.1em] uppercase"
+            className={`hidden sm:flex items-center gap-1.5 h-9 pl-3.5 pr-2.5 rounded-full border transition-all duration-200 text-[11px] font-semibold tracking-[0.1em] uppercase ${
+              isLight
+                ? 'border-white/40 text-white/95 hover:border-white/60 hover:text-white hover:bg-white/10'
+                : 'border-mocha/10 bg-mocha/[0.03] text-text-secondary hover:border-mocha/20 hover:bg-mocha/5 hover:text-mocha'
+            }`}
             aria-expanded={isBranchesOpen}
             aria-haspopup="dialog"
           >
@@ -122,12 +137,21 @@ export default function Navbar({
             <ChevronDown className="w-3.5 h-3.5 opacity-70 shrink-0" />
           </button>
 
-          <div className="hidden sm:block w-px h-5 bg-mocha/10 mx-0.5" aria-hidden />
+          <div
+            className={`hidden sm:block w-px h-5 mx-0.5 transition-colors duration-300 ${
+              isLight ? 'bg-white/40' : 'bg-mocha/10'
+            }`}
+            aria-hidden
+          />
 
           <div className="flex items-center gap-0.5">
             <button
               type="button"
-              className="nav-icon p-2.5 rounded-lg text-text-secondary hover:text-mocha hover:bg-mocha/5 transition-colors duration-200 hidden sm:flex"
+              className={`p-2.5 rounded-lg transition-all duration-200 hidden sm:flex ${
+                isLight
+                  ? 'text-white/95 hover:text-white hover:bg-white/10'
+                  : 'nav-icon text-text-secondary hover:text-mocha hover:bg-mocha/5'
+              }`}
               aria-label="Account"
             >
               <User className="w-5 h-5" />
@@ -135,7 +159,11 @@ export default function Navbar({
             <button
               type="button"
               onClick={onCartOpen}
-              className="nav-icon relative p-2.5 rounded-lg text-text-secondary hover:text-mocha hover:bg-mocha/5 transition-colors duration-200"
+              className={`relative p-2.5 rounded-lg transition-all duration-200 ${
+                isLight
+                  ? 'text-white/95 hover:text-white hover:bg-white/10'
+                  : 'nav-icon text-text-secondary hover:text-mocha hover:bg-mocha/5'
+              }`}
               aria-label="Cart"
             >
               <ShoppingBag className="w-5 h-5" />
@@ -143,7 +171,9 @@ export default function Navbar({
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute top-0.5 right-0.5 w-4 h-4 bg-mocha text-cream text-[10px] flex items-center justify-center rounded-full font-semibold"
+                  className={`absolute top-0.5 right-0.5 w-4 h-4 text-[10px] flex items-center justify-center rounded-full font-semibold ${
+                    isLight ? 'bg-white text-mocha' : 'bg-mocha text-cream'
+                  }`}
                 >
                   {cartCount}
                 </motion.span>
@@ -152,7 +182,11 @@ export default function Navbar({
             <button
               type="button"
               onClick={() => setIsMobileOpen(true)}
-              className="nav-icon p-2.5 rounded-lg text-text-secondary hover:text-mocha hover:bg-mocha/5 transition-colors duration-200 md:hidden"
+              className={`p-2.5 rounded-lg transition-all duration-200 md:hidden ${
+                isLight
+                  ? 'text-white/95 hover:text-white hover:bg-white/10'
+                  : 'nav-icon text-text-secondary hover:text-mocha hover:bg-mocha/5'
+              }`}
               aria-label="Menu"
               aria-expanded={isMobileOpen}
             >

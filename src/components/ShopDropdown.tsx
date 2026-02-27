@@ -9,9 +9,11 @@ interface ShopDropdownProps {
   onViewChange: (view: View) => void;
   /** Optional class for the trigger to match navbar item style */
   className?: string;
+  /** When true, use white text (e.g. over hero) */
+  light?: boolean;
 }
 
-export default function ShopDropdown({ currentView, onViewChange, className = '' }: ShopDropdownProps) {
+export default function ShopDropdown({ currentView, onViewChange, className = '', light = false }: ShopDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -25,14 +27,16 @@ export default function ShopDropdown({ currentView, onViewChange, className = ''
 
   const isShopActive = currentView === 'shop';
 
+  const triggerClass = light
+    ? `nav-item flex items-center gap-1 py-1.5 pr-0.5 transition-all duration-200 text-white/95 hover:text-white ${isShopActive ? 'font-bold' : ''}`
+    : `nav-item flex items-center gap-1 py-1.5 pr-0.5 transition-colors duration-200 ${className} ${isShopActive ? 'nav-item-active' : 'nav-item-default'}`;
+
   return (
     <div ref={ref} className="relative">
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`nav-item flex items-center gap-1 py-1.5 pr-0.5 transition-colors duration-200 ${className} ${
-          isShopActive ? 'nav-item-active' : 'nav-item-default'
-        }`}
+        className={triggerClass}
         aria-expanded={isOpen}
         aria-haspopup="true"
       >

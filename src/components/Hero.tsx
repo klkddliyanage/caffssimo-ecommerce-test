@@ -4,11 +4,16 @@ import { View } from '../types';
 
 interface HeroProps {
   onShopNow: () => void;
+  atHero?: boolean;
 }
 
-export default function Hero({ onShopNow }: HeroProps) {
+export default function Hero({ onShopNow, atHero = true }: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section
+      className={`relative min-h-screen flex items-center justify-center overflow-hidden -mt-14 md:-mt-16 transition-[padding] duration-300 ${
+        atHero ? 'pt-20 md:pt-24' : 'pt-14 md:pt-16'
+      }`}
+    >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -16,25 +21,24 @@ export default function Hero({ onShopNow }: HeroProps) {
           alt="Hero background"
           className="w-full h-full object-cover object-center"
         />
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50" /> */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white-100 via-cream/10 to-cream" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-cream/10 to-cream" />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8">
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 flex flex-col items-center justify-center text-center space-y-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="space-y-4"
+          className="flex flex-col items-center space-y-4 w-full"
         >
-          <span className="inline-block text-mocha font-bold tracking-[0.2em] uppercase text-xs">
+          <span className="inline-block text-white/95 font-bold tracking-[0.2em] uppercase text-xs drop-shadow-sm">
             Premium Specialty Coffee
           </span>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-bold text-espresso tracking-tight leading-[0.85]">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-bold text-white tracking-tight leading-[0.85] drop-shadow-md">
             Crafted for <br />
-            <span className="text-mocha italic">Slow Moments.</span>
+            <span className="text-white/95 italic">Slow Moments.</span>
           </h1>
-          <p className="text-text-secondary text-lg md:text-xl max-w-xl mx-auto leading-relaxed font-serif italic">
+          <p className="text-white/95 text-lg md:text-xl max-w-xl mx-auto leading-relaxed font-serif italic drop-shadow-md text-center">
             "A meticulously curated selection of the world's finest specialty roasts, sourced with integrity and roasted for the discerning palate."
           </p>
         </motion.div>
@@ -53,8 +57,8 @@ export default function Hero({ onShopNow }: HeroProps) {
               Shop Now <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </span>
           </button>
-          <button className="px-10 py-4 bg-white text-mocha border border-mocha/10 rounded-full font-semibold hover:bg-beige transition-all active:scale-95">
-            Explore Roasts
+          <button className="px-10 py-4 bg-white/95 text-espresso border border-white/40 rounded-full font-semibold hover:bg-white transition-all active:scale-95 shadow-lg backdrop-blur-sm">
+            Delivery
           </button>
         </motion.div>
       </div>
@@ -66,21 +70,9 @@ export default function Hero({ onShopNow }: HeroProps) {
         transition={{ delay: 1, duration: 1 }}
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
       >
-        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-text-secondary/40">Scroll to explore</span>
-        <div className="w-px h-12 bg-gradient-to-b from-mocha/20 to-transparent" />
+        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/80">Scroll to explore</span>
+        <div className="w-px h-12 bg-gradient-to-b from-black/60 to-transparent" />
       </motion.div>
-
-      {/* Floating Elements */}
-      <motion.div 
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 left-10 w-32 h-32 bg-gold/10 rounded-full blur-3xl"
-      />
-      <motion.div 
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-1/4 right-10 w-48 h-48 bg-mocha/5 rounded-full blur-3xl"
-      />
     </section>
   );
 }
