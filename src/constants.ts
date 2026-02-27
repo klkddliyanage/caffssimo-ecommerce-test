@@ -100,3 +100,99 @@ export const GRIND_TYPES = [
   'French Press',
   'Cold Brew'
 ];
+
+// Replace with your actual delivery page URLs
+export const DOORDASH_URL = 'https://www.doordash.com/store/your-caffasimo-store/';
+export const UBER_EATS_URL = 'https://www.ubereats.com/store/your-caffasimo-store/';
+
+export interface Branch {
+  id: string;
+  name: string;
+  address: string;
+  city: string;
+  openingHours: string;
+  phone: string;
+  mapUrl?: string;
+  /** Optional image URL for the branch section (e.g. cafe interior). */
+  image?: string;
+  /** Latitude for map marker. */
+  lat: number;
+  /** Longitude for map marker. */
+  lng: number;
+}
+
+/**
+ * One map showing all branches. Create a Google My Map with all branch pins at
+ * https://www.google.com/maps/d/ then Share → Embed map and paste the iframe src here.
+ */
+export const ALL_BRANCHES_MAP_EMBED_URL =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50470.02859375!2d-122.4194155!3d37.7749295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c6c8f4459%3A0xb10ed6d9b5050fa5!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890';
+
+// Replace with your real franchise branch data
+export const BRANCHES: Branch[] = [
+  {
+    id: 'downtown',
+    name: 'Caffasimo Downtown',
+    address: '123 Main Street',
+    city: 'San Francisco, CA',
+    openingHours: 'Mon–Fri 7:00 AM – 7:00 PM, Sat–Sun 8:00 AM – 6:00 PM',
+    phone: '(415) 555-0100',
+    mapUrl: 'https://maps.google.com/?q=123+Main+Street+San+Francisco',
+    image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1200',
+    lat: 37.7849,
+    lng: -122.4094,
+  },
+  {
+    id: 'harbor',
+    name: 'Caffasimo Harbor View',
+    address: '456 Harbor Drive',
+    city: 'San Francisco, CA',
+    openingHours: 'Daily 6:30 AM – 8:00 PM',
+    phone: '(415) 555-0101',
+    mapUrl: 'https://maps.google.com/?q=456+Harbor+Drive+San+Francisco',
+    image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=1200',
+    lat: 37.7812,
+    lng: -122.3935,
+  },
+  {
+    id: 'heights',
+    name: 'Caffasimo The Heights',
+    address: '789 Oak Avenue',
+    city: 'Oakland, CA',
+    openingHours: 'Mon–Sat 7:00 AM – 6:00 PM, Sun 8:00 AM – 4:00 PM',
+    phone: '(510) 555-0102',
+    mapUrl: 'https://maps.google.com/?q=789+Oak+Avenue+Oakland',
+    image: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&q=80&w=1200',
+    lat: 37.8044,
+    lng: -122.2712,
+  },
+];
+
+/**
+ * Contact and business details. Replace with your real information.
+ * Used by Contact page and can be reused for footer, Branches modal, etc.
+ */
+export interface ContactInfo {
+  companyName: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  postalCode?: string;
+  openingHours?: string;
+  social?: { label: string; url: string }[];
+}
+
+export const CONTACT_INFO: ContactInfo = {
+  companyName: 'Caffasimo',
+  email: 'hello@caffasimo.com',
+  phone: '(415) 555-0100',
+  address: '123 Main Street',
+  city: 'San Francisco, CA',
+  postalCode: '94102',
+  openingHours: 'Mon–Fri 8:00 AM – 6:00 PM',
+  social: [
+    { label: 'Instagram', url: 'https://instagram.com/caffasimo' },
+    { label: 'Facebook', url: 'https://facebook.com/caffasimo' },
+  ],
+};

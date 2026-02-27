@@ -19,6 +19,12 @@ import AIRoastFinder from './components/AIRoastFinder';
 import VisitUs from './components/VisitUs';
 import Journal from './components/Journal';
 import BrandPhilosophy from './components/BrandPhilosophy';
+import BranchesPage from './components/BranchesPage';
+import AboutPage from './components/AboutPage';
+import MenusPage from './components/MenusPage';
+import OwnACafePage from './components/OwnACafePage';
+import EmploymentPage from './components/EmploymentPage';
+import ContactPage from './components/ContactPage';
 import { View, Product, CartItem } from './types';
 
 export default function App() {
@@ -26,6 +32,7 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedBranchId, setSelectedBranchId] = useState<string | null>(null);
 
   // Scroll to top on view change
   useEffect(() => {
@@ -96,6 +103,7 @@ export default function App() {
             exit={{ opacity: 0, y: -20 }}
           >
             <ShopPage 
+              selectedBranchId={selectedBranchId}
               onProductClick={handleProductClick}
               onAddToCart={(p) => addToCart(p)}
             />
@@ -115,6 +123,66 @@ export default function App() {
             />
           </motion.div>
         ) : null;
+      case 'branches':
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <BranchesPage />
+          </motion.div>
+        );
+      case 'about':
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <AboutPage />
+          </motion.div>
+        );
+      case 'menus':
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <MenusPage />
+          </motion.div>
+        );
+      case 'ownACafe':
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <OwnACafePage onNavigateToContact={() => setCurrentView('contact')} />
+          </motion.div>
+        );
+      case 'employment':
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <EmploymentPage />
+          </motion.div>
+        );
+      case 'contact':
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <ContactPage />
+          </motion.div>
+        );
       default:
         return null;
     }
@@ -127,6 +195,8 @@ export default function App() {
         onViewChange={setCurrentView}
         onCartOpen={() => setIsCartOpen(true)}
         cartCount={cart.reduce((sum, i) => sum + i.quantity, 0)}
+        selectedBranchId={selectedBranchId}
+        onSelectBranch={setSelectedBranchId}
       />
 
       <main className="flex-grow">

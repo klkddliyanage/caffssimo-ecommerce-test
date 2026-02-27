@@ -1,74 +1,248 @@
-import { motion } from 'motion/react';
-import { ShoppingBag, Search, User, Menu } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ShoppingBag, User, Menu, ChevronDown, X } from 'lucide-react';
 import { View } from '../types';
+import ShopDropdown from './ShopDropdown';
+import BranchesModal from './BranchesModal';
+import { BRANCHES } from '../constants';
 
 interface NavbarProps {
   currentView: View;
   onViewChange: (view: View) => void;
   onCartOpen: () => void;
   cartCount: number;
+  selectedBranchId?: string | null;
+  onSelectBranch?: (branchId: string) => void;
 }
 
-export default function Navbar({ currentView, onViewChange, onCartOpen, cartCount }: NavbarProps) {
+type NavItem =
+  | { id: string; label: string; view: View }
+  | { id: 'shop'; label: string; dropdown: true };
+
+const NAV_ITEMS: NavItem[] = [
+  { id: 'shop', label: 'Shop', dropdown: true },
+  { id: 'about', label: 'About', view: 'about' },
+  { id: 'branches', label: 'Branches', view: 'branches' },
+  { id: 'menus', label: 'Menus', view: 'menus' },
+  { id: 'ownACafe', label: 'Own a Cafe', view: 'ownACafe' },
+  { id: 'employment', label: 'Employment', view: 'employment' },
+  { id: 'contact', label: 'Contact', view: 'contact' },
+];
+
+const BRANCH_LABEL_MAX = 14;
+
+function getBranchLabel(id: string | null): string {
+  if (!id) return 'Branch';
+  const name = BRANCHES.find((b) => b.id === id)?.name.replace(/^Caffasimo\s+/, '');
+  if (!name) return 'Branch';
+  return name.length > BRANCH_LABEL_MAX ? name.slice(0, BRANCH_LABEL_MAX) + '…' : name;
+}
+
+export default function Navbar({
+  currentView,
+  onViewChange,
+  onCartOpen,
+  cartCount,
+  selectedBranchId = null,
+  onSelectBranch,
+}: NavbarProps) {
+  const [isBranchesOpen, setIsBranchesOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isMobileOpen) return;
+    const onEscape = (e: KeyboardEvent) => e.key === 'Escape' && setIsMobileOpen(false);
+    document.addEventListener('keydown', onEscape);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onEscape);
+      document.body.style.overflow = '';
+    };
+  }, [isMobileOpen]);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 px-6 py-4">
-      <div className="max-w-7xl mx-auto flex items-center justify-between glass rounded-2xl px-6 py-3 soft-shadow">
-        <div className="flex items-center gap-12">
-          <button 
+      <header className="max-w-7xl mx-auto flex items-center justify-between h-12 md:h-14 px-6 rounded-xl bg-white/90 backdrop-blur-md border border-mocha/[0.06] shadow-[0_1px_3px_rgba(43,30,24,0.04)]">
+        {/* Left: logo + nav */}
+        <div className="flex items-center gap-4 md:gap-5 min-w-0">
+          <button
+            type="button"
             onClick={() => onViewChange('home')}
-            className="text-2xl font-serif font-bold text-espresso tracking-tighter flex items-center gap-2"
+            className="flex items-center shrink-0 hover:opacity-90 transition-opacity duration-200"
+            aria-label="Home"
           >
-            <div className="w-8 h-8 bg-espresso rounded-full flex items-center justify-center text-cream text-sm font-sans">C</div>
-            Caffasimo.
+            <img
+              src="/logo.png"
+              alt="Caffasimo"
+              className="h-12 md:h-14 w-auto object-contain"
+            />
           </button>
-          
-          <div className="hidden md:flex items-center gap-8">
-            {['Shop', 'Roasts', 'Journal', 'Visit'].map((item) => (
-              <button
-                key={item}
-                onClick={() => {
-                  if (item === 'Shop') onViewChange('shop');
-                  if (item === 'Roasts') onViewChange('roasts');
-                  if (item === 'Journal') onViewChange('journal');
-                  if (item === 'Visit') onViewChange('visit');
-                }}
-                className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors hover:text-mocha ${
-                  (item.toLowerCase() === currentView) ? 'text-mocha' : 'text-text-secondary'
-                }`}
-              >
-                {item}
-              </button>
-            ))}
+
+          <div className="hidden md:flex items-center gap-2 lg:gap-3">
+            {NAV_ITEMS.map((item) => {
+              if (item.id === 'shop' && 'dropdown' in item) {
+                return (
+                  <ShopDropdown
+                    key={item.id}
+                    currentView={currentView}
+                    onViewChange={onViewChange}
+                  />
+                );
+              }
+              if ('view' in item) {
+                const isActive = currentView === item.view;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => onViewChange(item.view)}
+                    className={`nav-item py-1.5 px-1 transition-colors duration-200 ${
+                      isActive ? 'nav-item-active' : 'nav-item-default'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                );
+              }
+              return null;
+            })}
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <button className="p-2 text-text-secondary hover:text-mocha transition-colors hidden sm:block">
-            <Search className="w-5 h-5" />
-          </button>
-          <button className="p-2 text-text-secondary hover:text-mocha transition-colors hidden sm:block">
-            <User className="w-5 h-5" />
-          </button>
-          <button 
-            onClick={onCartOpen}
-            className="relative p-2 text-text-secondary hover:text-mocha transition-colors"
+        {/* Right: branch selector + divider + icons */}
+        <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
+          <button
+            type="button"
+            onClick={() => setIsBranchesOpen(true)}
+            className="hidden sm:flex items-center gap-1.5 h-9 pl-3.5 pr-2.5 rounded-full border border-mocha/10 bg-mocha/[0.03] text-text-secondary hover:border-mocha/20 hover:bg-mocha/5 hover:text-mocha transition-all duration-200 text-[11px] font-semibold tracking-[0.1em] uppercase"
+            aria-expanded={isBranchesOpen}
+            aria-haspopup="dialog"
           >
-            <ShoppingBag className="w-5 h-5" />
-            {cartCount > 0 && (
-              <motion.span 
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="absolute top-1 right-1 w-4 h-4 bg-mocha text-cream text-[10px] flex items-center justify-center rounded-full font-bold"
-              >
-                {cartCount}
-              </motion.span>
-            )}
+            <span className="max-w-[72px] truncate">{getBranchLabel(selectedBranchId)}</span>
+            <ChevronDown className="w-3.5 h-3.5 opacity-70 shrink-0" />
           </button>
-          <button className="md:hidden p-2 text-text-secondary hover:text-mocha transition-colors">
-            <Menu className="w-5 h-5" />
-          </button>
+
+          <div className="hidden sm:block w-px h-5 bg-mocha/10 mx-0.5" aria-hidden />
+
+          <div className="flex items-center gap-0.5">
+            <button
+              type="button"
+              className="nav-icon p-2.5 rounded-lg text-text-secondary hover:text-mocha hover:bg-mocha/5 transition-colors duration-200 hidden sm:flex"
+              aria-label="Account"
+            >
+              <User className="w-5 h-5" />
+            </button>
+            <button
+              type="button"
+              onClick={onCartOpen}
+              className="nav-icon relative p-2.5 rounded-lg text-text-secondary hover:text-mocha hover:bg-mocha/5 transition-colors duration-200"
+              aria-label="Cart"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {cartCount > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute top-0.5 right-0.5 w-4 h-4 bg-mocha text-cream text-[10px] flex items-center justify-center rounded-full font-semibold"
+                >
+                  {cartCount}
+                </motion.span>
+              )}
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsMobileOpen(true)}
+              className="nav-icon p-2.5 rounded-lg text-text-secondary hover:text-mocha hover:bg-mocha/5 transition-colors duration-200 md:hidden"
+              aria-label="Menu"
+              aria-expanded={isMobileOpen}
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {isMobileOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsMobileOpen(false)}
+              className="fixed inset-0 bg-espresso/30 backdrop-blur-sm z-40 md:hidden"
+              aria-hidden
+            />
+            <motion.aside
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+              className="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-cream border-l border-mocha/10 shadow-xl z-50 md:hidden flex flex-col"
+              aria-modal
+              aria-label="Navigation menu"
+            >
+              <div className="flex items-center justify-between p-4 border-b border-mocha/10">
+                <span className="text-sm font-semibold uppercase tracking-widest text-espresso/70">Menu</span>
+                <button
+                  type="button"
+                  onClick={() => setIsMobileOpen(false)}
+                  className="p-2 rounded-lg text-text-secondary hover:text-mocha hover:bg-mocha/5 transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <nav className="flex-1 overflow-y-auto p-6 space-y-1">
+                <button
+                  onClick={() => { onViewChange('shop'); setIsMobileOpen(false); }}
+                  className={`nav-item w-full text-left py-3 px-1 block border-b border-mocha/5 ${
+                    currentView === 'shop' ? 'nav-item-active' : 'nav-item-default'
+                  }`}
+                >
+                  Shop
+                </button>
+                {NAV_ITEMS.map((item) => {
+                  if (item.id === 'shop') return null;
+                  if ('view' in item) {
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => { onViewChange(item.view); setIsMobileOpen(false); }}
+                        className={`nav-item w-full text-left py-3 px-1 block border-b border-mocha/5 ${
+                          currentView === item.view ? 'nav-item-active' : 'nav-item-default'
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    );
+                  }
+                  return null;
+                })}
+              </nav>
+              <div className="p-4 border-t border-mocha/10">
+                <button
+                  type="button"
+                  onClick={() => { setIsMobileOpen(false); setIsBranchesOpen(true); }}
+                  className="w-full flex items-center justify-center gap-2 h-10 rounded-full border border-mocha/10 bg-mocha/[0.03] text-[10px] font-semibold tracking-[0.1em] uppercase text-text-secondary hover:bg-mocha/5 hover:text-mocha transition-colors"
+                >
+                  {getBranchLabel(selectedBranchId)}
+                  <ChevronDown className="w-3 h-3" />
+                </button>
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+
+      <BranchesModal
+        isOpen={isBranchesOpen}
+        onClose={() => setIsBranchesOpen(false)}
+        onSelectBranch={onSelectBranch}
+        selectedBranchId={selectedBranchId}
+      />
     </nav>
   );
 }

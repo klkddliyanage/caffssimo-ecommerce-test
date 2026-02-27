@@ -7,11 +7,12 @@ import { useState, useMemo } from 'react';
 import { Search, SlidersHorizontal } from 'lucide-react';
 
 interface ShopPageProps {
+  selectedBranchId?: string | null;
   onProductClick: (product: Product) => void;
   onAddToCart: (product: Product) => void;
 }
 
-export default function ShopPage({ onProductClick, onAddToCart }: ShopPageProps) {
+export default function ShopPage({ selectedBranchId, onProductClick, onAddToCart }: ShopPageProps) {
   const [selectedRoast, setSelectedRoast] = useState<RoastLevel | 'All'>('All');
   const [searchQuery, setSearchQuery] = useState('');
 

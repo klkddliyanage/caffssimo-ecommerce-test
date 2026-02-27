@@ -9,15 +9,15 @@ interface HeroProps {
 export default function Hero({ onShopNow }: HeroProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Background Image with Parallax-like effect */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=1920" 
+          src="/hero.jpeg" 
           alt="Hero background"
-          className="w-full h-full object-cover opacity-40"
-          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-cream via-cream/80 to-cream" />
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50" /> */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white-100 via-cream/10 to-cream" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-8">

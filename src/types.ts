@@ -17,4 +17,14 @@ export interface CartItem extends Product {
   grindType: string;
 }
 
-export type View = 'home' | 'shop' | 'product' | 'checkout' | 'roasts' | 'journal' | 'visit';
+export type View =
+  | 'home'
+  | 'shop'
+  | 'product'
+  | 'checkout'
+  | 'branches'
+  | 'about'
+  | 'menus'
+  | 'ownACafe'
+  | 'employment'
+  | 'contact';
