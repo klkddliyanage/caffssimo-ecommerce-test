@@ -7,9 +7,9 @@ import ResourceCard from './training/ResourceCard';
 import QuizSection from './training/QuizSection';
 
 const CONTAINER = 'max-w-5xl mx-auto px-4 sm:px-6';
-const SECTION_PADDING = 'py-12 md:py-16';
+const SECTION_PADDING = 'py-6 md:py-8';
 const SECTION_HEADING = 'text-2xl md:text-3xl font-serif font-bold text-espresso tracking-tight mb-2';
-const SECTION_SUB = 'text-text-secondary mb-8';
+const SECTION_SUB = 'text-text-secondary mb-4';
 
 export default function CourseDetailPage() {
   const { courseSlug } = useParams<{ courseSlug: string }>();
@@ -45,7 +45,7 @@ export default function CourseDetailPage() {
       </div>
 
       {/* Course hero */}
-      <section className={`${CONTAINER} ${SECTION_PADDING} pt-8 md:pt-12`}>
+      <section className={`${CONTAINER} ${SECTION_PADDING} pt-4 md:pt-6`}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -122,7 +122,7 @@ export default function CourseDetailPage() {
       </section>
 
       {/* Back to training */}
-      <section className={`${CONTAINER} ${SECTION_PADDING} pb-20`}>
+      <section className={`${CONTAINER} ${SECTION_PADDING} pb-12`}>
         <Link
           to="/training"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-mocha text-cream font-semibold hover:bg-espresso transition-colors"

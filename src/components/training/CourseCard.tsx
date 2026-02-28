@@ -36,9 +36,9 @@ export default function CourseCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.4 }}
-      className="group rounded-2xl bg-white/80 backdrop-blur-sm border border-mocha/10 p-6 shadow-[0_4px_20px_-2px_rgba(43,30,24,0.06)] hover:shadow-[0_10px_30px_-5px_rgba(43,30,24,0.1)] hover:border-mocha/20 transition-all duration-300 flex flex-col h-full"
+      className="group rounded-2xl bg-white/80 backdrop-blur-sm border border-mocha/10 p-4 shadow-[0_4px_20px_-2px_rgba(43,30,24,0.06)] hover:shadow-[0_10px_30px_-5px_rgba(43,30,24,0.1)] hover:border-mocha/20 transition-all duration-300 flex flex-col h-full"
     >
-      <div className="flex flex-wrap items-center gap-2 mb-3">
+      <div className="flex flex-wrap items-center gap-2 mb-2">
         <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg ${statusClass}`}>
           {statusLabel}
         </span>
@@ -51,10 +51,10 @@ export default function CourseCard({
           {difficulty}
         </span>
       </div>
-      <h3 className="text-xl font-serif font-bold text-espresso tracking-tight mb-2">{title}</h3>
-      <p className="text-text-secondary text-sm leading-relaxed grow mb-5">{description}</p>
+      <h3 className="text-lg font-serif font-bold text-espresso tracking-tight mb-1.5">{title}</h3>
+      <p className="text-text-secondary text-sm leading-relaxed grow mb-3">{description}</p>
       {status === 'in-progress' && (
-        <div className="w-full h-1.5 bg-mocha/10 rounded-full mb-4 overflow-hidden">
+        <div className="w-full h-1.5 bg-mocha/10 rounded-full mb-3 overflow-hidden">
           <div
             className="h-full bg-gold rounded-full transition-all duration-500"
             style={{ width: progress }}
@@ -63,7 +63,7 @@ export default function CourseCard({
       )}
       <Link
         to={to}
-        className="inline-flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-mocha text-cream font-semibold text-sm hover:bg-espresso transition-colors duration-200"
+        className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-mocha text-cream font-semibold text-sm hover:bg-espresso transition-colors duration-200"
       >
         <Play className="w-4 h-4" />
         {status === 'completed' ? 'Review' : status === 'in-progress' ? 'Continue' : 'Start'}

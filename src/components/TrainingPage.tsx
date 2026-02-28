@@ -6,7 +6,7 @@ import CourseCard from './training/CourseCard';
 import { TRAINING_COURSES } from '../data/trainingCourses';
 
 const CONTAINER = 'max-w-5xl mx-auto px-4 sm:px-6';
-const SECTION_PADDING = 'py-12 md:py-16';
+const SECTION_PADDING = 'py-6 md:py-8';
 const SECTION_HEADING = 'text-2xl md:text-3xl font-serif font-bold text-espresso tracking-tight mb-2';
 const SECTION_SUB = 'text-text-secondary mb-8';
 
@@ -52,7 +52,7 @@ export default function TrainingPage() {
       </div>
 
       {/* Hero */}
-      <section className={`${CONTAINER} ${SECTION_PADDING} pt-8 md:pt-12`}>
+      <section className={`${CONTAINER} ${SECTION_PADDING} pt-4 md:pt-6`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,10 +75,10 @@ export default function TrainingPage() {
       {/* Courses */}
       <section className={`${CONTAINER} ${SECTION_PADDING}`}>
         <h2 className={SECTION_HEADING}>Courses</h2>
-        <p className={SECTION_SUB}>
+        <p className="text-text-secondary mb-4">
           Click a course to open it. Each course has videos, a quiz, and resources. Start or continue below.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {TRAINING_COURSES.map((c) => (
             <CourseCard
               key={c.id}
@@ -134,7 +134,7 @@ export default function TrainingPage() {
       </section>
 
       {/* Completion / encouragement */}
-      <section className={`${CONTAINER} ${SECTION_PADDING} pb-20`}>
+      <section className={`${CONTAINER} ${SECTION_PADDING} pb-12`}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
