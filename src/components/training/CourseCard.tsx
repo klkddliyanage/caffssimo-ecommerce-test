@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Clock, BarChart3, Play } from 'lucide-react';
 
@@ -8,7 +9,7 @@ export interface CourseCardProps {
   duration: string;
   difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
   status?: 'not-started' | 'in-progress' | 'completed';
-  onStart?: () => void;
+  to: string;
 }
 
 export default function CourseCard({
@@ -18,7 +19,7 @@ export default function CourseCard({
   duration,
   difficulty,
   status = 'not-started',
-  onStart,
+  to,
 }: CourseCardProps) {
   const statusLabel =
     status === 'completed' ? 'Completed' : status === 'in-progress' ? 'In progress' : 'Start';
@@ -60,14 +61,13 @@ export default function CourseCard({
           />
         </div>
       )}
-      <button
-        type="button"
-        onClick={onStart}
+      <Link
+        to={to}
         className="inline-flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-mocha text-cream font-semibold text-sm hover:bg-espresso transition-colors duration-200"
       >
         <Play className="w-4 h-4" />
         {status === 'completed' ? 'Review' : status === 'in-progress' ? 'Continue' : 'Start'}
-      </button>
+      </Link>
     </motion.article>
   );
 }

@@ -3,137 +3,12 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Home, ChevronDown } from 'lucide-react';
 import CourseCard from './training/CourseCard';
-import VideoLesson from './training/VideoLesson';
-import ResourceCard from './training/ResourceCard';
-import QuizSection from './training/QuizSection';
+import { TRAINING_COURSES } from '../data/trainingCourses';
 
 const CONTAINER = 'max-w-5xl mx-auto px-4 sm:px-6';
 const SECTION_PADDING = 'py-12 md:py-16';
 const SECTION_HEADING = 'text-2xl md:text-3xl font-serif font-bold text-espresso tracking-tight mb-2';
 const SECTION_SUB = 'text-text-secondary mb-8';
-
-const OVERVIEW_ITEMS = [
-  { title: 'Coffee basics', desc: 'Beans, grind, and brew fundamentals' },
-  { title: 'Customer service', desc: 'Greeting, upselling, and handling feedback' },
-  { title: 'Store hygiene and safety', desc: 'Cleaning and food safety standards' },
-  { title: 'POS / cashier training', desc: 'Transactions and end-of-day procedures' },
-  { title: 'Food handling', desc: 'Safe handling and storage' },
-  { title: 'Shift opening and closing', desc: 'Checklists and responsibilities' },
-  { title: 'Delivery platform handling', desc: 'Uber Eats, DoorDash, and in-app orders' },
-  { title: 'Team communication', desc: 'Handoffs and service standards' },
-];
-
-const COURSES = [
-  {
-    title: 'Introduction to Our Coffee Shop',
-    description: 'Brand values, store layout, and your role in the team.',
-    duration: '15 min',
-    difficulty: 'Beginner' as const,
-    progress: '0%',
-    status: 'not-started' as const,
-  },
-  {
-    title: 'Barista Basics',
-    description: 'Espresso extraction, grind size, and shot timing.',
-    duration: '30 min',
-    difficulty: 'Beginner' as const,
-    progress: '0%',
-    status: 'not-started' as const,
-  },
-  {
-    title: 'Espresso Machine Fundamentals',
-    description: 'Machine operation, cleaning, and troubleshooting.',
-    duration: '25 min',
-    difficulty: 'Beginner' as const,
-    progress: '40%',
-    status: 'in-progress' as const,
-  },
-  {
-    title: 'Milk Steaming and Latte Art Basics',
-    description: 'Steaming technique and simple latte art.',
-    duration: '20 min',
-    difficulty: 'Intermediate' as const,
-    progress: '0%',
-    status: 'not-started' as const,
-  },
-  {
-    title: 'Customer Service Excellence',
-    description: 'Greeting, order taking, and handling complaints.',
-    duration: '25 min',
-    difficulty: 'Beginner' as const,
-    progress: '0%',
-    status: 'not-started' as const,
-  },
-  {
-    title: 'Cashier and POS Training',
-    description: 'Using the POS, payments, and closing the register.',
-    duration: '20 min',
-    difficulty: 'Beginner' as const,
-    progress: '0%',
-    status: 'not-started' as const,
-  },
-  {
-    title: 'Hygiene, Cleaning, and Safety',
-    description: 'Daily cleaning tasks and food safety rules.',
-    duration: '20 min',
-    difficulty: 'Beginner' as const,
-    progress: '0%',
-    status: 'not-started' as const,
-  },
-  {
-    title: 'Opening and Closing Procedures',
-    description: 'Checklists and responsibilities for open and close.',
-    duration: '25 min',
-    difficulty: 'Intermediate' as const,
-    progress: '0%',
-    status: 'not-started' as const,
-  },
-  {
-    title: 'Handling Uber Eats / DoorDash Orders',
-    description: 'Accepting, preparing, and handing off delivery orders.',
-    duration: '15 min',
-    difficulty: 'Beginner' as const,
-    progress: '0%',
-    status: 'not-started' as const,
-  },
-  {
-    title: 'Team Communication and Service Standards',
-    description: 'Handoffs, support, and consistent service.',
-    duration: '20 min',
-    difficulty: 'Beginner' as const,
-    progress: '0%',
-    status: 'not-started' as const,
-  },
-];
-
-const VIDEO_LESSONS = [
-  {
-    title: 'Welcome & Store Tour',
-    description: 'Quick overview of the space, equipment, and where everything lives.',
-    embedId: 'dQw4w9WgXcQ', // Replace with real training video ID
-  },
-  {
-    title: 'Espresso Basics',
-    description: 'Pulling a perfect shot: dose, time, and volume.',
-    embedId: 'dQw4w9WgXcQ',
-  },
-  {
-    title: 'Customer Service Best Practices',
-    description: 'How to greet guests and handle common situations.',
-    embedId: 'dQw4w9WgXcQ',
-  },
-];
-
-const RESOURCES = [
-  { title: 'Employee handbook', description: 'Policies and expectations' },
-  { title: 'Cleaning checklist', description: 'Daily and weekly tasks' },
-  { title: 'Opening checklist', description: 'Start-of-day duties' },
-  { title: 'Closing checklist', description: 'End-of-day duties' },
-  { title: 'Menu guide', description: 'Items and modifiers' },
-  { title: 'Drink recipe guide', description: 'Recipes and build standards' },
-  { title: 'Safety instructions', description: 'Emergency and equipment safety' },
-  { title: 'Service standards guide', description: 'Quality and speed standards' },
-];
 
 const FAQ_ITEMS = [
   {
@@ -142,7 +17,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Where do I check training videos?',
-    a: 'All training videos are on this page in the “Video learning” section. Bookmark this page or ask your manager for the link.',
+    a: 'Open any course from the list above. Each course has its own videos, quiz, and resources. Bookmark this page or ask your manager for the link.',
   },
   {
     q: 'Who do I contact if equipment is not working?',
@@ -197,87 +72,23 @@ export default function TrainingPage() {
         </motion.div>
       </section>
 
-      {/* Training overview */}
-      <section className={`${CONTAINER} ${SECTION_PADDING}`}>
-        <h2 className={SECTION_HEADING}>What you’ll learn</h2>
-        <p className={SECTION_SUB}>
-          Use this portal to build skills in coffee, service, safety, and store operations.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {OVERVIEW_ITEMS.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.35, delay: i * 0.03 }}
-              className="p-4 rounded-xl bg-white/70 border border-mocha/10 hover:border-mocha/20 hover:shadow-[0_6px_20px_-4px_rgba(43,30,24,0.08)] transition-all duration-200"
-            >
-              <h3 className="font-semibold text-espresso">{item.title}</h3>
-              <p className="text-sm text-text-secondary mt-1">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
       {/* Courses */}
       <section className={`${CONTAINER} ${SECTION_PADDING}`}>
         <h2 className={SECTION_HEADING}>Courses</h2>
         <p className={SECTION_SUB}>
-          Start or continue courses below. Progress is saved so you can pick up where you left off.
+          Click a course to open it. Each course has videos, a quiz, and resources. Start or continue below.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {COURSES.map((c) => (
+          {TRAINING_COURSES.map((c) => (
             <CourseCard
-              key={c.title}
+              key={c.id}
               title={c.title}
               description={c.description}
               duration={c.duration}
               difficulty={c.difficulty}
-              progress={c.progress}
-              status={c.status}
-              onStart={() => {}}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* Video learning */}
-      <section className={`${CONTAINER} ${SECTION_PADDING}`}>
-        <h2 className={SECTION_HEADING}>Video learning</h2>
-        <p className={SECTION_SUB}>
-          Watch these training videos. Replace the placeholder links with your real video URLs when ready.
-        </p>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {VIDEO_LESSONS.map((v) => (
-            <VideoLesson
-              key={v.title}
-              title={v.title}
-              description={v.description}
-              embedId={v.embedId}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* Quiz */}
-      <section className={`${CONTAINER} ${SECTION_PADDING}`}>
-        <QuizSection />
-      </section>
-
-      {/* Resources */}
-      <section className={`${CONTAINER} ${SECTION_PADDING}`}>
-        <h2 className={SECTION_HEADING}>Resources & materials</h2>
-        <p className={SECTION_SUB}>
-          Download or view handbooks, checklists, and guides. Links can be updated to real files later.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {RESOURCES.map((r) => (
-            <ResourceCard
-              key={r.title}
-              title={r.title}
-              description={r.description}
-              href="#"
+              progress={c.progress ?? '0%'}
+              status={c.status ?? 'not-started'}
+              to={`/training/course/${c.slug}`}
             />
           ))}
         </div>

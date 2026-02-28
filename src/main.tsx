@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App.tsx';
 import TrainingPage from './components/TrainingPage.tsx';
+import CourseDetailPage from './components/CourseDetailPage.tsx';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
@@ -11,6 +12,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/training" element={<TrainingPage />} />
+        <Route path="/training/course/:courseSlug" element={<CourseDetailPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

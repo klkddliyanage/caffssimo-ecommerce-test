@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle, XCircle, Award } from 'lucide-react';
 
-interface QuizQuestion {
+export interface QuizQuestion {
   id: string;
   question: string;
   options: { value: string; label: string; correct: boolean }[];
 }
 
-const QUIZ_QUESTIONS: QuizQuestion[] = [
+const DEFAULT_QUESTIONS: QuizQuestion[] = [
   {
     id: 'q1',
     question: 'A customer says their drink is too cold. What should you do first?',
@@ -61,7 +61,17 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   },
 ];
 
-export default function QuizSection() {
+interface QuizSectionProps {
+  questions?: QuizQuestion[];
+  title?: string;
+  description?: string;
+}
+
+export default function QuizSection({
+  questions = DEFAULT_QUESTIONS,
+  title = 'Knowledge check',
+  description = 'Test what you’ve learned with this short quiz. Submit to see your score.',
+}: QuizSectionProps) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [showScore, setShowScore] = useState(false);
@@ -76,10 +86,10 @@ export default function QuizSection() {
     setShowScore(true);
   };
 
-  const correctCount = QUIZ_QUESTIONS.filter(
+  const correctCount = questions.filter(
     (q) => q.options.find((o) => o.value === answers[q.id])?.correct
   ).length;
-  const total = QUIZ_QUESTIONS.length;
+  const total = questions.length;
   const scorePercent = total > 0 ? Math.round((correctCount / total) * 100) : 0;
 
   const getOptionState = (q: QuizQuestion, value: string) => {
@@ -100,14 +110,14 @@ export default function QuizSection() {
       className="rounded-2xl bg-white/80 backdrop-blur-sm border border-mocha/10 p-6 md:p-8 shadow-[0_4px_20px_-2px_rgba(43,30,24,0.06)]"
     >
       <h2 className="text-2xl md:text-3xl font-serif font-bold text-espresso tracking-tight mb-2">
-        Knowledge check
+        {title}
       </h2>
       <p className="text-text-secondary mb-8">
-        Test what you’ve learned with this short quiz. Submit to see your score.
+        {description}
       </p>
 
       <div className="space-y-8">
-        {QUIZ_QUESTIONS.map((q) => (
+        {questions.map((q) => (
           <div key={q.id} className="space-y-3">
             <h3 className="font-semibold text-espresso">{q.question}</h3>
             <div className="grid gap-2 sm:grid-cols-2">
